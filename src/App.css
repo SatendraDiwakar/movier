@@ -1,38 +1,121 @@
-.App {
-  text-align: center;
+/* global reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+section {
+  /*TOP      left*/
+  /*bottom   right*/
+  padding: 3.9rem 0;
+  overflow-x: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+}
+
+.container {
+  width: 100%;
+  max-width: 122.5rem;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+.container-item{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* Hero starts */
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1b20;
+  position: absolute;
+  z-index: 1000;
+}
+/* Hero ends */
+
+/* nav */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* logo */
+.logo {
+  width: 12.8rem;
+  margin: 1rem 0;
 }
+.logo {
+  cursor: pointer;
+}
+
+/* menu toggler */
+.menu {
+  display: none;
+  font-size: 4.5rem;
+  position: absolute;
+  right: 8%;
+  background: transparent;
+  color: #fff;
+  z-index: 2500;
+}
+.menu-close {
+  display: none;
+  color: rgb(255, 38, 0);
+}
+
+/* nav links */
+.nav-links {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  cursor: pointer;
+}
+.link {
+  padding: 0 5px 5px;
+  margin: 0 1rem;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+.link:hover {
+  color: #c9a570;
+  transition: color 0.5s;
+}
+/* nav ends */
