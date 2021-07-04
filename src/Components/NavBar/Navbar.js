@@ -48,7 +48,9 @@ export default function Navbar() {
         <header>
             <div className="container">
                 <nav className="nav">
-                    <Logo logo={logo}/>
+
+                    {/* home icon */}
+                    <Logo logo={logo} />
                     <div className="menu">
                         <FiMenu
                             className="menu-toggle"

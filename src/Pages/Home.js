@@ -9,7 +9,6 @@ export default function Home() {
         <div className="hero">
             <div className="container container-item">
                 <p>
-
                     Home
                 </p>
             </div>
