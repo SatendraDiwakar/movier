@@ -1,43 +1,44 @@
-import React ,{ Component } from 'react';
+import React, { Component } from 'react';
 
 // API
 import API from './API'
 
 const MovierContext = React.createContext();
 
-export default class MovierProvider extends Component{
+export default class MovierProvider extends Component {
 
     // state 
     state = {
-        tv : {},
+        tv: {},
         movie: {},
         movies: {},
-        loading: false
+        loading: true
     }
 
     // lifecycle hook
-    componentDidMount(){
-        this.fetchMovies(1);
+    componentDidMount() {
+        this.fetchData();
     }
 
-    // Movies
-    fetchMovies = async (searchTerm = "", page) => {
+    // fetch data
+    fetchData = async () => {
         try {
-            const movies = await API.fetchMovies(searchTerm, page);
-            // console.log(movies);
-            this.setState(prev=>{
-                return({
-                    movies:{
+            const movies = await API.fetchMovies("", 1); // Movies
+            const tv = await API.fetchTV("60735"); // tv
+            this.setState(prev => {
+                return ({
+                    movies: {
                         ...movies,
                         results:
-                            page > 1 ? 
-                            [...movies.results,...prev.results]
-                                : [...movies.results]
-                    }
+                            movies.page > 1 ?
+                                [...movies.results, ...prev.movies.results]
+                                : [...movies.results],
+                    },
+                    tv: { ...prev.tv, ...tv }
                 })
-            }, ()=>{
+            }, () => {
                 this.setState({
-                    loading: true
+                    loading: false
                 })
             })
         } catch (error) {
@@ -45,11 +46,11 @@ export default class MovierProvider extends Component{
         }
     }
 
-    render(){
-        return <MovierContext.Provider value={{...this.state}}>
+    render() {
+        return <MovierContext.Provider value={{ ...this.state }}>
             {this.props.children}
         </MovierContext.Provider>
     }
 }
 
-export {MovierContext};
+export { MovierContext };
