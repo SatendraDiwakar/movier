@@ -12,6 +12,8 @@ export default class MovierProvider extends Component {
         tv: {},
         movie: {},
         movies: {},
+        popularMovies: {},
+        popularTv: {},
         loading: true
     }
 
@@ -25,6 +27,8 @@ export default class MovierProvider extends Component {
         try {
             const movies = await API.fetchMovies("", 1); // Movies
             const tv = await API.fetchTV("60735"); // tv
+            const popularMovies = await API.fetchTrending("movie") // popular movies
+            const popularTv = await API.fetchTrending("tv") // popular tv shows
             this.setState(prev => {
                 return ({
                     movies: {
@@ -34,7 +38,9 @@ export default class MovierProvider extends Component {
                                 [...movies.results, ...prev.movies.results]
                                 : [...movies.results],
                     },
-                    tv: { ...prev.tv, ...tv }
+                    tv: { ...prev.tv, ...tv },
+                    popularMovies: { ...prev.popularMovies, ...popularMovies },
+                    popularTv: { ...prev.popularTv, ...popularTv }
                 })
             }, () => {
                 this.setState({

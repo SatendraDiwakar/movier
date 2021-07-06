@@ -1,0 +1,9 @@
+.movie-card{
+    width: 20.1rem;
+    height: 29.8rem;
+    background: #252533;
+    border: 1px solid #525560;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
