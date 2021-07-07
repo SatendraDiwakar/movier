@@ -25,6 +25,37 @@ section {
   overflow-x: hidden;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+::-webkit-scrollbar-button{
+  display: block;
+}
+
+.popular-media-container::-webkit-scrollbar{
+  display: none;
+}
+.popular-media-container:hover::-webkit-scrollbar{
+  display: unset;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 img {
   width: 100%;
   max-width: 100%;
