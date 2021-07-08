@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import { MovierContext } from '../Context'
 
 // component
-import Navbar from '../Components/NavBar/Navbar';
 import CardMain from '../Components/UI/Card Main/CardMain';
 import PopularMedia from '../Components/PopularMedia/PopularMedia';
 
@@ -14,7 +13,6 @@ export default function Home() {
     const { loading, popularTv, popularMovies } = context;
 
     return <>
-        <Navbar />
         <div className="hero">
             <div className="container container-item hero-container">
                 <CardMain />

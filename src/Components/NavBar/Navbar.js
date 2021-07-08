@@ -3,7 +3,7 @@ import NavLinks from './NavLinks'
 import { FiMenu } from 'react-icons/fi'
 import { MdClose } from 'react-icons/md'
 import Logo from '../Logo'
-import logo from '../../Images/logo.PNG'
+import logo from '../../Images/logo.png'
 
 export default function Navbar() {
 

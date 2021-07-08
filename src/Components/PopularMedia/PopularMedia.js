@@ -25,6 +25,7 @@ export default function PopularMovies({ popularMedia, popularMediaHeading, media
         scrollBy = mediaContainer.scrollLeft;
         if (scrollBy < mediaContainer.scrollWidth) {
             scrollBy += (window.innerWidth - 150);
+            // need to changle the variable value from window.innerwidht to size of no. of visible thumbs
         }
         mediaContainer.scroll(scrollBy, 0)
     }
@@ -35,7 +36,7 @@ export default function PopularMovies({ popularMedia, popularMediaHeading, media
             {
                 popularMedia.results.map(item => {
                     return (
-                        <div key={item.id} className="popular-media-card">
+                        <div key={item.id} className="popular-media-card" onClick={()=>console.log(item.id)}>
                             <ThumbnailCard thumbnail={
                                 item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : noImage
                             } />
