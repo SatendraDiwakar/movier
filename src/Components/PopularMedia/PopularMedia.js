@@ -1,23 +1,19 @@
 import React from 'react'
-
+//  react router
+import { Link } from 'react-router-dom'
 // react icons
 import { FaAngleRight } from 'react-icons/fa'
-
 // config
 import { POSTER_SIZE, IMAGE_BASE_URL } from '../../config';
-
 // Component
 import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
-
 // Image
 import noImage from '../../Images/noImage.PNG'
-
 // styles
 import './PopularMedia.css'
 
 export default function PopularMovies({ popularMedia, popularMediaHeading, mediaType }) {
-    console.log(popularMedia);
-
+   
     // scroll button functionality
     let scrollBy = 0;
     function handleClick() {
@@ -36,10 +32,12 @@ export default function PopularMovies({ popularMedia, popularMediaHeading, media
             {
                 popularMedia.results.map(item => {
                     return (
-                        <div key={item.id} className="popular-media-card" onClick={()=>console.log(item.id)}>
-                            <ThumbnailCard thumbnail={
-                                item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : noImage
-                            } />
+                        <div key={item.id} className="popular-media-card">
+                            <Link to={`/${mediaType}/${item.id}/`}>
+                                <ThumbnailCard id={item.id} thumbnail={
+                                    item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : noImage
+                                } />
+                            </Link>
                             <p className="show-name">{item.title || item.name}</p>
                         </div>
                     )
