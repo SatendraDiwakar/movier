@@ -22,22 +22,22 @@ const apiSettings = {
       : `${POPULAR_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMovie: async movieId => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+  fetchMedia: async (mediaId, medType) => {
+    const endpoint = `${API_URL}${medType}/${mediaId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   fetchTrending: async (medType) => {
-    const endpoint = medType?
-    `${API_URL}trending/${medType}/week?api_key=${API_KEY}`
-    :`${API_URL}trending/all/week?api_key=${API_KEY}`;
-      return await (await fetch(endpoint)).json();
+    const endpoint = medType ?
+      `${API_URL}trending/${medType}/week?api_key=${API_KEY}`
+      : `${API_URL}trending/all/week?api_key=${API_KEY}`;
+    return await (await fetch(endpoint)).json();
   },
   fetchTV: async tvId => {
     const endpoint = `${API_URL}tv/${tvId}/images?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchCredits: async movieId => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+  fetchCredits: async (mediaId, medType) => {
+    const creditsEndpoint = `${API_URL}${medType}/${mediaId}/credits?api_key=${API_KEY}`;
     return await (await fetch(creditsEndpoint)).json();
   },
   // Bonus material below for login

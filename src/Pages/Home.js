@@ -20,8 +20,8 @@ export default function Home() {
         <div className="hero">
             <div className="container container-item hero-container">
                 <CardMain hero={heroHome} />
-                {!loading && <PopularMedia popularMedia={popularMovies} popularMediaHeading="Popular Movies" mediaType="popularMovie" />}
-                {!loading && <PopularMedia popularMedia={popularTv} popularMediaHeading="Popular Tv Shows" mediaType="popularTvShow" />}
+                {!loading && <PopularMedia popularMedia={popularMovies} popularMediaHeading="Popular Movies" mediaType="movie" />}
+                {!loading && <PopularMedia popularMedia={popularTv} popularMediaHeading="Popular Tv Shows" mediaType="tv" />}
             </div>
         </div>
     </>

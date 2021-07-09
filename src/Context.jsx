@@ -53,7 +53,7 @@ export default class MovierProvider extends Component {
     }
 
     render() {
-        return <MovierContext.Provider value={{ ...this.state }}>
+        return <MovierContext.Provider value={{ ...this.state, fetchMovie: this.fetchMovie }}>
             {this.props.children}
         </MovierContext.Provider>
     }

@@ -1,0 +1,21 @@
+.actor-card-container {
+  text-transform: capitalize;
+  margin: 0 1rem;
+}
+.actor-card {
+  width: 20rem;
+  height: 30rem;
+  background: #252533;
+  box-shadow: 0 0 3px #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.cast-name {
+  padding: 0 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  text-align: center;
+  color: #fff;
+}

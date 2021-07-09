@@ -1,18 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
+// icons
+import { FaAngleRight } from 'react-icons/fa';
+// API
+import API from '../API'
 // config
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../config';
-// context
-import { MovierContext } from '../Context';
+import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../config';
 // component
+import List from '../Components/List/List';
 import CardMain from '../Components/UI/Card Main/CardMain';
+import ActorCard from '../Components/UI/ActorCard/ActorCard';
 // Image
 import noImage from '../Images/noImage.PNG'
 
 export default function Movie({ match }) {
 
-    // context
-    const context = useContext(MovierContext);
-    const { loading, popularTv, popularMovies } = context;
+    // state
+    const [media, setMedia] = useState({});
+    const [loading, setLoading] = useState(true);
 
     // specific style for main card
     const styl = {
@@ -22,30 +26,54 @@ export default function Movie({ match }) {
         top: '14rem'
     }
 
-    // fetch media
-    let media;
-    if (!loading) {
-        let id = parseInt(match.params.movie);
-        if (match.params.mediaType === 'popularMovie') {
-            media = popularMovies.results.find((item) => {
-                return item.id === id
-            })
-            console.log(media);
-        } else if (match.params.mediaType === 'popularTvShow') {
-            media = popularTv.results.find((item) => {
-                return item.id === id
-            })
-            console.log(media);
+    let id = parseInt(match.params.movie);
+    let medType = match.params.mediaType;
+
+    // fetch single media
+    const fetchMedia = async (id, mediaType) => {
+        let media, credits, directors;
+        try {
+            media = await API.fetchMedia(id, mediaType)
+            credits = await API.fetchCredits(id, mediaType);
+            // Get directors only
+            directors = credits.crew.filter(
+                member => member.job === 'Director'
+            );
+
+            setMedia({ ...media, ...credits, directors })
+            setLoading(false)
+
+        } catch (error) {
+            console.log(error);
         }
+    }
+    useEffect(() => {
+        fetchMedia(id, medType);
+    }, [id, medType])
+
+    console.log(media);
+
+    if(loading){
+        return null;
     }
 
     return <>
         <div className="hero">
-            {!loading && <CardMain styl={styl} hero={
+            <CardMain styl={styl} hero={
                 media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
-            } />}
-            <div className="container container-item hero-container">
-            </div>
+            } />
+            
+            <div className="container container-item hero-container">    
+            <List listHeading="Cast" listId={medType} >
+                {
+                    media.cast.map(item=>{
+                        return <ActorCard actorName={item.name} actorImg={
+                            item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noImage
+                        } />
+                    })
+                }
+            </List>
+            </div>        
         </div>
     </>
 }

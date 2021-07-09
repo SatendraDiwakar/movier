@@ -18,7 +18,7 @@ export default function NavLinks({ links, size }) {
     }
 
 
-    return <div className="nav-links list">
+    return <div className="nav-links">
         {links.map((item, index) => {
             if (item === '/') {
                 return <NavLink to={`${item}`} key={index} activeStyle={st} exact className="link">Home</NavLink>

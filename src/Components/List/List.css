@@ -1,4 +1,4 @@
-.popular-media {
+.list {
   width: 100%;
   margin: 2rem 0;
   display: block;
@@ -6,31 +6,23 @@
   font-family: "Sulphur Point", sans-serif;
   position: relative;
 }
-.popular-media-heading {
+.list-heading {
   margin-bottom: 2rem;
   font-size: 3rem;
   letter-spacing: 2.5px;
 }
-.popular-media-container {
+.list-container {
   padding: 1rem;
   display: flex;
   overflow: hidden;
   scroll-behavior: smooth;
 }
-.popular-media-container:hover {
+.list-container:hover {
   overflow-x: overlay; /* for scroll bar */
 }
-.popular-media-card {
+.list-card {
   text-transform: capitalize;
   margin: 0 1rem;
-}
-
-.show-name {
-  padding: 0 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 2rem;
-  letter-spacing: 1.5px;
-  text-align: center;
 }
 
 .right-angle-icon-container {
