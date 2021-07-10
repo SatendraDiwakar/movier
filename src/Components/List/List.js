@@ -1,8 +1,6 @@
 import React from 'react'
 //  react router
 import { FaAngleRight } from 'react-icons/fa'
-// Image
-import noImage from '../../Images/noImage.PNG'
 // styles
 import './List.css'
 

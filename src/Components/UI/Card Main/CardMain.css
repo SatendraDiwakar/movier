@@ -1,9 +1,15 @@
 .card-main {
-  height: 35rem;
+  height: 40rem;
   width: 100%;
-  margin-bottom: 3rem;
   background-color: #252533;
   box-shadow: 0 0 3px #fff;
   border-radius: 25px;
-  overflow: hidden;
+  position: relative;
+}
+.carou{
+  width: 14rem;
+  height: 20rem;
+  position: absolute;
+  bottom: -10rem;
+  background-color: blueviolet;
 }

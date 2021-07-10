@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// icons
-import { FaAngleRight } from 'react-icons/fa';
 // API
 import API from '../API'
 // config
@@ -20,10 +18,7 @@ export default function Movie({ match }) {
 
     // specific style for main card
     const styl = {
-        width: '90%',
-        height: '55rem',
-        position: 'absolute',
-        top: '14rem'
+        height: '55rem'
     }
 
     let id = parseInt(match.params.movie);
@@ -53,27 +48,28 @@ export default function Movie({ match }) {
 
     console.log(media);
 
-    if(loading){
+    if (loading) {
         return null;
     }
 
     return <>
         <div className="hero">
-            <CardMain styl={styl} hero={
-                media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
-            } />
-            
-            <div className="container container-item hero-container">    
-            <List listHeading="Cast" listId={medType} >
-                {
-                    media.cast.map(item=>{
-                        return <ActorCard actorName={item.name} actorImg={
-                            item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noImage
-                        } />
-                    })
-                }
-            </List>
-            </div>        
+            <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
+                <CardMain styl={styl} showCarousel={true} hero={
+                    media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
+                } />
+
+                <List listHeading="Cast" listId={medType} >
+                    {
+                        media.cast.map(item => {
+                            return <ActorCard actorName={item.name} actorImg={
+                                item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noImage
+                            } />
+                        })
+                    }
+                </List>
+
+            </div>
         </div>
     </>
 }

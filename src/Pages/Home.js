@@ -18,10 +18,22 @@ export default function Home() {
 
     return <>
         <div className="hero">
-            <div className="container container-item hero-container">
-                <CardMain hero={heroHome} />
-                {!loading && <PopularMedia popularMedia={popularMovies} popularMediaHeading="Popular Movies" mediaType="movie" />}
-                {!loading && <PopularMedia popularMedia={popularTv} popularMediaHeading="Popular Tv Shows" mediaType="tv" />}
+            <div className="container container-item hero-content">
+                <CardMain hero={heroHome} showCarousel={false} />
+                {!loading &&
+                    <PopularMedia
+                        popularMedia={popularMovies}
+                        popularMediaHeading="Popular Movies"
+                        mediaType="movie"
+                    />
+                }
+                {!loading &&
+                    <PopularMedia
+                        popularMedia={popularTv}
+                        popularMediaHeading="Popular Tv Shows"
+                        mediaType="tv"
+                    />
+                }
             </div>
         </div>
     </>

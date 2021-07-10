@@ -37,8 +37,9 @@
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   position: absolute;
-  right: 0;
-  top: 200px;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
 }
 .right-angle-icon {

@@ -106,7 +106,7 @@ header::before{
   position: absolute;
   z-index: 1000;
 }
-.hero-container {
+.hero-content {
   position: absolute;
   top: 14rem;
 }
