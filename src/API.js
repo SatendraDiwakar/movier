@@ -32,8 +32,8 @@ const apiSettings = {
       : `${API_URL}trending/all/week?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchTV: async tvId => {
-    const endpoint = `${API_URL}tv/${tvId}/images?api_key=${API_KEY}`;
+  fetchMediaImages: async (mediaId, medType) => {
+    const endpoint = `${API_URL}${medType}/${mediaId}/images?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   fetchCredits: async (mediaId, medType) => {

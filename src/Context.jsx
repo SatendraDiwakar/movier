@@ -26,7 +26,6 @@ export default class MovierProvider extends Component {
     fetchData = async () => {
         try {
             const movies = await API.fetchMovies("", 1); // Movies
-            const tv = await API.fetchTV("60735"); // tv
             const popularMovies = await API.fetchTrending("movie") // popular movies
             const popularTv = await API.fetchTrending("tv") // popular tv shows
             this.setState(prev => {
@@ -38,7 +37,6 @@ export default class MovierProvider extends Component {
                                 [...movies.results, ...prev.movies.results]
                                 : [...movies.results],
                     },
-                    tv: { ...prev.tv, ...tv },
                     popularMovies: { ...prev.popularMovies, ...popularMovies },
                     popularTv: { ...prev.popularTv, ...popularTv }
                 })
@@ -53,7 +51,7 @@ export default class MovierProvider extends Component {
     }
 
     render() {
-        return <MovierContext.Provider value={{ ...this.state, fetchMovie: this.fetchMovie }}>
+        return <MovierContext.Provider value={{ ...this.state }}>
             {this.props.children}
         </MovierContext.Provider>
     }

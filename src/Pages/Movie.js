@@ -20,13 +20,13 @@ export default function Movie({ match }) {
     const styl = {
         height: '55rem'
     }
-
+    console.log(media);
     let id = parseInt(match.params.movie);
     let medType = match.params.mediaType;
 
-    // fetch single media
+    // fetch single media(movie/tv)
     const fetchMedia = async (id, mediaType) => {
-        let media, credits, directors;
+        let media, mediaImages, credits, directors;
         try {
             media = await API.fetchMedia(id, mediaType)
             credits = await API.fetchCredits(id, mediaType);
@@ -34,19 +34,23 @@ export default function Movie({ match }) {
             directors = credits.crew.filter(
                 member => member.job === 'Director'
             );
+            // fetch media backdrops
+            mediaImages = await API.fetchMediaImages(id, mediaType);
 
-            setMedia({ ...media, ...credits, directors })
+            setMedia({ ...media, ...credits, directors, mediaImages })
             setLoading(false)
 
         } catch (error) {
             console.log(error);
         }
     }
+
+
     useEffect(() => {
         fetchMedia(id, medType);
     }, [id, medType])
 
-    console.log(media);
+    // console.log(media);
 
     if (loading) {
         return null;
@@ -55,7 +59,7 @@ export default function Movie({ match }) {
     return <>
         <div className="hero">
             <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
-                <CardMain styl={styl} showCarousel={true} hero={
+                <CardMain styl={styl} showCarousel={true} carouselItems={media.mediaImages.backdrops} hero={
                     media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
                 } />
 
