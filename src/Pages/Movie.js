@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 // API
 import API from '../API'
 // config
-import { IMAGE_BASE_URL, BACKDROP_SIZE, POSTER_SIZE } from '../config';
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
 // component
 import List from '../Components/List/List';
 import CardMain from '../Components/UI/Card Main/CardMain';
+import MediaDetailsCard from '../Components/UI/MediaDetailsCard/MediaDetailsCard';
 import ActorCard from '../Components/UI/ActorCard/ActorCard';
 // Image
 import noImage from '../Images/noImage.PNG'
@@ -17,16 +18,22 @@ export default function Movie({ match }) {
     const [loading, setLoading] = useState(true);
 
     // specific style for main card
-    const styl = {
-        height: '55rem'
+    const styleHero = {
+        height: '45rem',
+        width: '95rem',
+        margin: '.5rem',
+        marginRight: '2.5rem',
+        boxShadow: '0 0 6px #6d85ab'
     }
+
     console.log(media);
+    // Rouse params identifiers
     let id = parseInt(match.params.movie);
     let medType = match.params.mediaType;
 
     // fetch single media(movie/tv)
     const fetchMedia = async (id, mediaType) => {
-        let media, mediaImages, credits, directors;
+        let media, credits, directors;
         try {
             media = await API.fetchMedia(id, mediaType)
             credits = await API.fetchCredits(id, mediaType);
@@ -34,17 +41,14 @@ export default function Movie({ match }) {
             directors = credits.crew.filter(
                 member => member.job === 'Director'
             );
-            // fetch media backdrops
-            mediaImages = await API.fetchMediaImages(id, mediaType);
 
-            setMedia({ ...media, ...credits, directors, mediaImages })
+            setMedia({ ...media, ...credits, directors })
             setLoading(false)
 
         } catch (error) {
             console.log(error);
         }
     }
-
 
     useEffect(() => {
         fetchMedia(id, medType);
@@ -59,11 +63,14 @@ export default function Movie({ match }) {
     return <>
         <div className="hero">
             <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
-                <CardMain styl={styl} showCarousel={true} carouselItems={media.mediaImages.backdrops} hero={
-                    media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
-                } />
-
-                <List listHeading="Cast" listId={medType} >
+                <div className="media-name"><p className="med-name">{media.original_name || media.original_title}</p></div>
+                <div className="media-details">
+                    <CardMain styl={styleHero} showCarousel={true} hero={
+                        media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
+                    } />
+                    <MediaDetailsCard />
+                </div>
+                <List listHeading="Cast" listId={medType}>
                     {
                         media.cast.map(item => {
                             return <ActorCard actorName={item.name} actorImg={
