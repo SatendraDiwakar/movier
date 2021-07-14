@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import NavLinks from './NavLinks'
+import React, { useState, useEffect, useRef } from 'react'
+// react router
+import { Link, useHistory } from 'react-router-dom'
+// icons
 import { FiMenu } from 'react-icons/fi'
 import { MdClose } from 'react-icons/md'
+import { RiHomeLine } from 'react-icons/ri'
+import { CgSearch } from 'react-icons/cg'
+// components
 import Logo from '../Logo'
 import logo from '../../Images/logo.png'
 
 export default function Navbar() {
 
-    // initializing nav bar link names
-    const links = ['/', 'card']
-
     const [size, setSize] = useState(window.innerWidth);
     // getting window size to add dynamic style on menu list
 
+    const inputRef = useRef(null);
+    const history = useHistory();
 
     //Logic to close menu if screen size changes in opened menu
     if (size <= 650) {
@@ -36,6 +40,14 @@ export default function Navbar() {
             }
         });
 
+        inputRef.current.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+                let value = event.target.value
+                history.push(`/s/${value}`);
+                event.target.value = '';
+            }
+        })
+
         return () => {
             isMounted = false;
         }
@@ -48,8 +60,9 @@ export default function Navbar() {
         <header>
             <div className="container">
                 <nav className="nav">
-
-                    {/* home icon */}
+                    <Link to="/" className="home-icon">
+                        <RiHomeLine />
+                    </Link>
                     <Logo logo={logo} />
                     <div className="menu">
                         <FiMenu
@@ -69,10 +82,16 @@ export default function Navbar() {
                             }}
                         />
                     </div>
-                    <NavLinks
-                        links={links}
-                        size={size}
-                    />
+                    <div className="search-container">
+                        <input
+                            ref={inputRef}
+                            type="search"
+                            className="search-bar"
+                            placeholder="search..."
+                        />
+
+                        <span className="search-icon"><CgSearch /></span>
+                    </div>
                 </nav>
             </div>
         </header>

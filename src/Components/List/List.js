@@ -4,7 +4,7 @@ import { FaAngleRight } from 'react-icons/fa'
 // styles
 import './List.css'
 
-export default function List({ children, listHeading, listId }) {
+export default function List({ children, listHeading, listId, showIcon, styl }) {
    
     // scroll button functionality
     let scrollBy = 0;
@@ -20,11 +20,11 @@ export default function List({ children, listHeading, listId }) {
 
     return <div className="list">
         <h2 className="list-heading">{listHeading}</h2>
-        <div className="list-container" id={listId}>
+        <div className="list-container" id={listId} style={styl} >
             {children}
         </div>
-        <div className="right-angle-icon-container scroll-button" onClick={handleClick}>
+        {showIcon && <div className="right-angle-icon-container scroll-button" onClick={handleClick}>
             <FaAngleRight className="right-angle-icon" />
-        </div>
+        </div>}
     </div>
 }

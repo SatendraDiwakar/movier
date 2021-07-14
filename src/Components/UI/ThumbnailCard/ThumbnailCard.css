@@ -1,9 +1,10 @@
 .thumbnail-card{
+  width: 20rem;
   text-transform: capitalize;
   margin: 0 1rem;
 }
 .thumbnail {
-  width: 20rem;
+  width: 100%;
   height: 30rem;
   background: #252533;
   box-shadow: 0 0 3px #fff;

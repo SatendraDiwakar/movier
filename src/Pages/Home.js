@@ -8,7 +8,7 @@ import heroHome from '../Images/heroHome.jpg'
 
 // component
 import CardMain from '../Components/UI/Card Main/CardMain';
-import PopularMedia from '../Components/PopularMedia/PopularMedia';
+import PopularMedia from '../Components/MediaList/MediaList';
 
 export default function Home() {
 
@@ -22,15 +22,15 @@ export default function Home() {
                 <CardMain hero={heroHome} showCarousel={false} />
                 {!loading &&
                     <PopularMedia
-                        popularMedia={popularMovies}
-                        popularMediaHeading="Popular Movies"
+                        mediaList={popularMovies}
+                        mediaListHeading="Popular Movies"
                         mediaType="movie"
                     />
                 }
                 {!loading &&
                     <PopularMedia
-                        popularMedia={popularTv}
-                        popularMediaHeading="Popular Tv Shows"
+                        mediaList={popularTv}
+                        mediaListHeading="Popular Tv Shows"
                         mediaType="tv"
                     />
                 }

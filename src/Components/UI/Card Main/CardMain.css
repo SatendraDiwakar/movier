@@ -2,11 +2,11 @@
   height: 40rem;
   width: 100%;
   background-color: #252533;
-  box-shadow: 0 0 3px #fff;
+  box-shadow: 0 0 10px #6d85ab;
   border-radius: 25px;
   position: relative;
 }
-.carou{
+.carou {
   width: 14rem;
   height: 20rem;
   position: absolute;

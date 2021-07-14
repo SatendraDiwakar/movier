@@ -9,11 +9,21 @@ import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 // Image
 import noImage from '../../Images/noImage.PNG'
 
-export default function PopularMovies({ popularMedia, popularMediaHeading, mediaType }) {
+export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
 
-    return <List listHeading={popularMediaHeading} listId={mediaType} >
+    const styl = {
+        flexWrap: 'wrap',
+        gap: '4rem 3rem'
+    }
+
+    return <List
+        listHeading={mediaListHeading}
+        listId={mediaType}
+        styl={fromPage === 'searchPage' ? styl : null}
+        showIcon={fromPage === 'searchPage' ? false : true}
+    >
         {
-            popularMedia.results.map(item => {
+            mediaList.results.map(item => {
                 return (
                     <Link key={item.id} to={`/${mediaType}/${item.id}/`}>
                         <ThumbnailCard id={item.id} title={item.title || item.name} thumbnail={

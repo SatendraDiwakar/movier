@@ -56,6 +56,7 @@ img {
 
 a {
   text-decoration: none;
+  cursor: auto;
 }
 
 li {
@@ -114,9 +115,16 @@ header::before {
 
 /* nav */
 .nav {
+  height: 105px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+.nav > .logo{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* logo */
@@ -124,7 +132,56 @@ header::before {
   width: 12.8rem;
   margin: 1rem 0;
 }
-.logo {
+
+/* home icon */
+.home-icon {
+  padding: 0.5rem;
+  font-size: 3.5rem;
+  display: flex;
+  position: relative;
+  left: 5%;
+  color: #fff;
+  cursor: pointer;
+}
+.home-icon:hover {
+  border-radius: 100%;
+  box-shadow: 0 0 6px #6d85ab;
+}
+
+/* search bar */
+.search-container{
+  width: 300px;
+  height: 45px;
+  margin-right: 2rem;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-bar {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  border-radius: 40px;
+  border: 3px solid transparent;
+  background-color: rgba(255, 255, 255, 0.9);
+  outline: none;
+}
+.search-bar:focus {
+  border-radius: 40px;
+  border: 3px solid #449cc5;
+  box-shadow: 0 0 6px #449cc5;
+  background-color: rgba(255, 255, 255);
+}
+.search-icon{
+  width: 50px;
+  font-size: 3rem;
+  color: #fff;
+  padding-right: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
@@ -165,11 +222,11 @@ header::before {
 /* nav ends */
 
 /* single movie page */
-.media-name{
+.media-name-container {
   width: 100%;
   padding: 0.5rem;
 }
-.med-name{
+.media-name {
   margin: 0.5rem;
   font-family: "Sulphur Point", sans-serif;
   font-size: 5rem;

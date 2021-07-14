@@ -8,15 +8,16 @@ import { Switch, Route } from 'react-router-dom'
 import Navbar from './Components/NavBar/Navbar';
 // pages
 import Home from './Pages/Home'
-import Movie from './Pages/Movie'
+import SingleMedia from './Pages/SingleMedia';
+import SearchItems from './Pages/SearchItems';
 import Error from './Pages/Error'
 
 function App() {
   return <>
     <Navbar />
     <Switch>
-      <Route path="/s/:name/" component={Home} />
-      <Route path="/:mediaType/:movie/" component={Movie} />
+      <Route path="/s/:searchTerm/" component={SearchItems} />
+      <Route path="/:mediaType/:movie/" component={SingleMedia} />
       <Route path="/" component={Home} />
       <Route component={Error} />
     </Switch>

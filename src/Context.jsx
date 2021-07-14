@@ -9,9 +9,6 @@ export default class MovierProvider extends Component {
 
     // state 
     state = {
-        tv: {},
-        movie: {},
-        movies: {},
         popularMovies: {},
         popularTv: {},
         loading: true
@@ -25,18 +22,10 @@ export default class MovierProvider extends Component {
     // fetch data
     fetchData = async () => {
         try {
-            const movies = await API.fetchMovies("", 1); // Movies
             const popularMovies = await API.fetchTrending("movie") // popular movies
             const popularTv = await API.fetchTrending("tv") // popular tv shows
             this.setState(prev => {
                 return ({
-                    movies: {
-                        ...movies,
-                        results:
-                            movies.page > 1 ?
-                                [...movies.results, ...prev.movies.results]
-                                : [...movies.results],
-                    },
                     popularMovies: { ...prev.popularMovies, ...popularMovies },
                     popularTv: { ...prev.popularTv, ...popularTv }
                 })

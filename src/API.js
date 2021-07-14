@@ -16,7 +16,7 @@ const defaultConfig = {
 };
 
 const apiSettings = {
-  fetchMovies: async (searchTerm, page) => {
+  fetchSearch: async (searchTerm, page) => {
     const endpoint = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_BASE_URL}&page=${page}`;
@@ -24,6 +24,10 @@ const apiSettings = {
   },
   fetchMedia: async (mediaId, medType) => {
     const endpoint = `${API_URL}${medType}/${mediaId}?api_key=${API_KEY}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchSimilarMedia: async (mediaId, medType) => {
+    const endpoint = `${API_URL}${medType}/${mediaId}/similar?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   fetchTrending: async (medType) => {
@@ -34,6 +38,10 @@ const apiSettings = {
   },
   fetchMediaImages: async (mediaId, medType) => {
     const endpoint = `${API_URL}${medType}/${mediaId}/images?api_key=${API_KEY}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchMediaVideo: async (mediaId, medType) => {
+    const endpoint = `${API_URL}${medType}/${mediaId}/videos?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
   fetchCredits: async (mediaId, medType) => {
