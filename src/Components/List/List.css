@@ -26,7 +26,7 @@
   margin: 0 1rem;
 }
 
-.right-angle-icon-container {
+.scroll-button {
   width: 5rem;
   height: 6rem;
   padding: 0.5rem;
@@ -35,15 +35,29 @@
   align-items: center;
   justify-content: center;
   border: 2px solid #525560;
+  position: absolute;
+  cursor: pointer;
+}
+.left-angle-icon-container{
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.right-angle-icon-container{
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
-  position: absolute;
   right: -20px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
 }
 .right-angle-icon {
+  border-radius: 35px;
+  font-size: 5rem;
+  animation: left 1s infinite;
+}
+.left-angle-icon {
   border-radius: 35px;
   font-size: 5rem;
   animation: right 1s infinite;
@@ -61,5 +75,18 @@
   100% {
     opacity: 0;
     transform: translateX(0.5rem);
+  }
+}
+@keyframes left {
+  0% {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-0.5rem);
   }
 }

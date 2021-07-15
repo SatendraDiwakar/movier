@@ -10,7 +10,7 @@ import CardMain from '../Components/UI/Card Main/CardMain';
 import MediaDetailsCard from '../Components/UI/MediaDetailsCard/MediaDetailsCard';
 import ActorCard from '../Components/UI/ActorCard/ActorCard';
 // Image
-import noImage from '../Images/noImage.PNG'
+import noProfileImage from '../Images/noProfileImage.PNG'
 
 export default function SingleMedia({ match }) {
 
@@ -69,19 +69,19 @@ export default function SingleMedia({ match }) {
                 <div className="media-name-container"><p className="media-name">{media.original_name || media.original_title}</p></div>
                 <div className="media-details">
                     <CardMain styl={styleHero} showCarousel={true} hero={
-                        media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : noImage
+                        media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : "noBackdropImage"
                     } />
                     <MediaDetailsCard
                         overview={media.overview}
                         rating={media.vote_average}
-                        video={`https://www.youtube.com/watch?v=${media.videos.results[0].key}`}
+                        video={media.videos.results[0]?`https://www.youtube.com/watch?v=${media.videos.results[0].key}`:''}
                     />
                 </div>
-                <List listHeading="Cast" listId="mediaCast">
+                <List listHeading="Cast" listId="mediaCast" showIcon={true}>
                     {
                         media.cast.map(item => {
                             return <ActorCard actorName={item.name} actorImg={
-                                item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noImage
+                                item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noProfileImage
                             } />
                         })
                     }

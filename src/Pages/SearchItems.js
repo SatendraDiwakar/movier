@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // API
 import API from '../API'
-// config
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
 // components
 import SearchedMedia from '../Components/MediaList/MediaList';
 
@@ -12,7 +10,6 @@ export default function SearchItems({ match }) {
     const [searchItems, setSearchItems] = useState({});
     const [loading, setLoading] = useState(true);
 
-    console.log(searchItems);
     // Rouse params identifiers
     let searchTerm = match.params.searchTerm;
 
@@ -22,7 +19,10 @@ export default function SearchItems({ match }) {
         try {
             searchResults = await API.fetchSearch(searchTerm, page);
 
-            setSearchItems({ searchResults })
+            setSearchItems(()=>{
+                searchResults.results.sort((a,b)=>a.popularity-b.popularity).reverse();
+                return { searchResults }
+            })
             setLoading(false)
 
         } catch (error) {
@@ -42,7 +42,7 @@ export default function SearchItems({ match }) {
         <div className="hero-content container container-item">
             {!loading && <SearchedMedia
                 mediaList={searchItems.searchResults}
-                mediaListHeading={`Search Results for "${searchTerm}"`}
+                mediaListHeading={searchItems.searchResults.results.length!==0?`Search Results for '${searchTerm}'`:`Sorry, No Results are found for '${searchTerm}'`}
                 mediaType="movie"
                 fromPage="searchPage"
             />}

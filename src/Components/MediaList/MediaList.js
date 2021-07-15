@@ -6,8 +6,6 @@ import { POSTER_SIZE, IMAGE_BASE_URL } from '../../config';
 // Component
 import List from '../List/List'
 import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
-// Image
-import noImage from '../../Images/noImage.PNG'
 
 export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
 
@@ -27,7 +25,7 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
                 return (
                     <Link key={item.id} to={`/${mediaType}/${item.id}/`}>
                         <ThumbnailCard id={item.id} title={item.title || item.name} thumbnail={
-                            item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : noImage
+                            item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : "noPosterImage"
                         } />
                     </Link>
                 )

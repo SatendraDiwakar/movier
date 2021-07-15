@@ -4,12 +4,7 @@
   background-color: #252533;
   box-shadow: 0 0 10px #6d85ab;
   border-radius: 25px;
-  position: relative;
-}
-.carou {
-  width: 14rem;
-  height: 20rem;
-  position: absolute;
-  bottom: -10rem;
-  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
