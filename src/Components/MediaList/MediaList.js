@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 //  react router
 import { Link } from 'react-router-dom'
 // config
@@ -9,10 +9,21 @@ import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 
 export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
 
+    const [listItems,setListItems] = useState([]);
+
     const styl = {
         flexWrap: 'wrap',
-        gap: '4rem 3rem'
+        gap: '4rem 3rem',
+        justifyContent: 'space-evenly'
     }
+
+    useEffect(()=>{
+        let list = mediaList.results;
+        setListItems(prevItems=>[...prevItems,...list]);
+    },[mediaList.results])
+    console.log(listItems);
+
+    
 
     return <List
         listHeading={mediaListHeading}
@@ -21,7 +32,7 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
         showIcon={fromPage === 'searchPage' ? false : true}
     >
         {
-            mediaList.results.map(item => {
+            listItems.map(item => {
                 return (
                     <Link key={item.id} to={`/${mediaType}/${item.id}/`}>
                         <ThumbnailCard id={item.id} title={item.title || item.name} thumbnail={

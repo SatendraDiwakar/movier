@@ -72,6 +72,15 @@ header {
   left: 0;
   z-index: 1500;
   overflow: hidden;
+  transition: all 1s;
+}
+@keyframes navShow {
+  0%{
+    transform: translateY(-100%);
+  }
+  100%{
+    transform: translateY(0);
+  }
 }
 header::before {
   content: "";
@@ -83,6 +92,12 @@ header::before {
   top: 0;
   left: 0;
   z-index: -1;
+}
+
+/* If images aren't available */
+.image-icon{
+  font-size: 12rem;
+  color: #fff;
 }
 
 .container {
@@ -115,7 +130,7 @@ header::before {
 
 /* nav */
 .nav {
-  height: 105px;
+  height: 10.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -253,8 +268,41 @@ header::before {
 }
 /* single movie page ends */
 
-/* If images aren't available */
-.image-icon{
-  font-size: 12rem;
-  color: #fff;
+/* search movie page */
+.media-type-button-container{
+  margin: 2rem 0 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #6e747e;
 }
+.media-type-button{
+  width: 120px;
+  padding: .5rem;
+  margin: .5rem 1.5rem;
+  font-family: 'Roboto' , sans-serif;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6e747e;
+  border: 2px solid #6d85ab;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.media-type-button:hover{
+  background-color: transparent;
+  color: white;
+  box-shadow: 0 0 5px #6d85ab;
+  transition: all .5s;
+}
+.media-type-button-active{
+  pointer-events: none;
+  background-color: transparent;
+  color: white;
+  box-shadow: 0 0 5px #6d85ab;
+  /* background: #858396;
+  border: 2px solid #ffa36e;
+  box-shadow: 0 0 3px #ffa36e; */
+}
+/* search movie page ends */
