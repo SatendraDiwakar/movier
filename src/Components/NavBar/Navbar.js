@@ -11,62 +11,41 @@ import logo from '../../Images/logo.png'
 
 export default function Navbar() {
 
+    // states
     const [hideNav, setHideNav] = useState(false);
+    const [inputValue, setInputValue] = useState("")
+
+    // refs
     const refHeader = useRef(null);
     const inputRef = useRef(null);
     const searchButton = useRef(null);
+
+    // react rouse hook
     const history = useHistory();
 
     useEffect(() => {
 
-        let isMounted = true;
+        // event listener to show/hide nav bar
+        var lastScrollTop = 0;
+        window.addEventListener("scroll", function () {
+            var st = window.scrollY;
+            if (st > lastScrollTop) {
+                setHideNav(true);
+            } else {
+                setHideNav(false);
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
+    }, []);
 
-        if (isMounted) {
-
-            // event listener for enter key press in search bar
-            inputRef.current.addEventListener('keyup', (event) => {
-
-                if (event.keyCode === 13) {
-                    if (typeof event.target.value === 'undefined' || event.target.value === '') {
-                        alert("Please type something to search")
-                    } else {
-                        let value = event.target.value;
-                        history.push(`/s/${value}`);
-                        // event.target.value = '';
-                    }
-                }
-            });
-
-            // event listener for seacrh button click
-            searchButton.current.addEventListener('click', (event) => {
-
-                if (typeof event.target.value === 'undefined' || event.target.value === '') {
-                    alert("Please type something to search")
-                } else {
-                    let value = event.target.value;
-                    history.push(`/s/${value}`);
-                    // event.target.value = '';
-                }
-            })
-
-            // event listener for nav bar
-            var lastScrollTop = 0;
-            window.addEventListener("scroll", function () {
-                var st = window.scrollY;
-                if (st > lastScrollTop) {                    
-                    setHideNav(true);
-                } else {
-                    setHideNav(false);
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            }, false);
+    function startSearch() {
+        if (inputValue === '') {
+            alert("Please type something to search")
+        } else {
+            history.push(`/s/${inputValue}`);
         }
+    }
 
-        return () => {
-            isMounted = false;
-        }
-    }, [history]);
-// const [x,setX] =useState(1);
     return (
         <header ref={refHeader} style={
             hideNav ? {
@@ -87,8 +66,15 @@ export default function Navbar() {
                             type="search"
                             className="search-bar"
                             placeholder="search..."
+                            onKeyPress={(event) => {
+                                if (event.key === 'Enter') {
+                                    startSearch();
+                                }
+                            }}
+                            onChange={e => setInputValue(e.target.value)}
+                            value={inputValue}
                         />
-                        <span className="search-icon-container" ref={searchButton}>
+                        <span className="search-icon-container" onClick={() => startSearch()}>
                             <CgSearch className="search-icon" />
                         </span>
                     </div>

@@ -46,7 +46,7 @@ export default function List({ children, listHeading, listId, showIcon, styl }) 
                 }
             })
         }
-    }, [listId])
+    }, [listId, showIcon])
 
     // scroll distance calculation functionality
     let scrollBy = 0; // initial

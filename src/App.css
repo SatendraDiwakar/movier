@@ -72,7 +72,7 @@ header {
   left: 0;
   z-index: 1500;
   overflow: hidden;
-  transition: all 1s;
+  transition: all .6s;
 }
 @keyframes navShow {
   0%{
@@ -185,7 +185,7 @@ header::before {
 }
 .search-bar:focus {
   border-radius: 40px;
-  border: 3px solid #449cc5;
+  border: 2px solid #449cc5;
   box-shadow: 0 0 6px #449cc5;
   background-color: rgba(255, 255, 255);
 }
@@ -270,14 +270,14 @@ header::before {
 
 /* search movie page */
 .media-type-button-container{
-  margin: 2rem 0 1rem;
+  margin: .5rem 0 3rem;
   padding: 1rem;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #6e747e;
 }
 .media-type-button{
-  width: 120px;
+  width: 130px;
   padding: .5rem;
   margin: .5rem 1.5rem;
   font-family: 'Roboto' , sans-serif;
@@ -301,8 +301,5 @@ header::before {
   background-color: transparent;
   color: white;
   box-shadow: 0 0 5px #6d85ab;
-  /* background: #858396;
-  border: 2px solid #ffa36e;
-  box-shadow: 0 0 3px #ffa36e; */
 }
 /* search movie page ends */

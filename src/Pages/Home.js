@@ -21,19 +21,26 @@ export default function Home() {
             <div className="container container-item hero-content">
                 <CardMain hero={heroHome} showCarousel={false} />
                 {!loading &&
-                    <PopularMedia
-                        mediaList={popularMovies}
-                        mediaListHeading="Popular Movies"
-                        mediaType="movie"
-                    />
+                    <>
+                        <PopularMedia
+                            mediaList={popularMovies.results}
+                            mediaListHeading="Popular Movies"
+                            mediaType="movie"
+                        />
+                        <PopularMedia
+                            mediaList={popularTv.results}
+                            mediaListHeading="Popular Tv Shows"
+                            mediaType="tv"
+                        />
+                    </>
                 }
-                {!loading &&
-                    <PopularMedia
-                        mediaList={popularTv}
-                        mediaListHeading="Popular Tv Shows"
-                        mediaType="tv"
-                    />
-                }
+                <div className="media-type-button-container">
+                    <button className="media-type-button"
+                        id="movie-type-button"
+                        onClick={() => { window.scrollTo(0, 0) }} >
+                        Babk to Top
+                    </button>
+                </div>
             </div>
         </div>
     </>

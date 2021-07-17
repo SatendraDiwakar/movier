@@ -14,7 +14,7 @@ import noProfileImage from '../Images/noProfileImage.PNG'
 
 export default function SingleMedia({ match }) {
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     // state
     const [media, setMedia] = useState({});
@@ -74,7 +74,7 @@ export default function SingleMedia({ match }) {
                     <MediaDetailsCard
                         overview={media.overview}
                         rating={media.vote_average}
-                        video={media.videos.results[0]?`https://www.youtube.com/watch?v=${media.videos.results[0].key}`:''}
+                        video={media.videos.results[0] ? `https://www.youtube.com/watch?v=${media.videos.results[0].key}` : ''}
                     />
                 </div>
                 <List listHeading="Cast" listId="mediaCast" showIcon={true}>
@@ -86,11 +86,22 @@ export default function SingleMedia({ match }) {
                         })
                     }
                 </List>
-                {!loading && <SimilarMedia
-                    mediaList={media.similarMedia}
-                    mediaListHeading={medType ==='tv'? `Similar ${medType} shows` : `Similar ${medType}s`}
-                    mediaType={medType}
-                />}
+                {!loading &&
+                    <>
+                        <SimilarMedia
+                            mediaList={media.similarMedia.results}
+                            mediaListHeading={medType === 'tv' ? `Similar ${medType} shows` : `Similar ${medType}s`}
+                            mediaType={medType}
+                        />
+                        <div className="media-type-button-container">
+                            <button className="media-type-button"
+                                id="movie-type-button"
+                                onClick={() => { window.scrollTo(0, 0) }} >
+                                Babk to Top
+                            </button>
+                        </div>
+                    </>
+                }
             </div>
         </div>
     </>
