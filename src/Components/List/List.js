@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 //  react router
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 // styles
 import './List.css'
 
-export default function List({ children, listHeading, listId, showIcon, styl }) {
+export default function List({ children, listHeading, listId, showIconProp, styl }) {
+
+    const [showIcon,setShowIcon] = useState(showIconProp);
 
     const refLeftButton = useRef(null); // refering left scroll button
     const refRightButton = useRef(null); // refering right scroll button
@@ -16,7 +18,11 @@ export default function List({ children, listHeading, listId, showIcon, styl }) 
         let mediaContainerLeft = mediaContainer.scrollLeft; // scrolled position of elements left
         let mediaContainerWidth = mediaContainer.offsetWidth; // width of element
         let mediaContainerLength = mediaContainer.scrollWidth; // total scroll lenght
-        // let thumbWidth = document.getElementsByClassName("thumbnail")[0].offsetWidth;
+
+
+        if(mediaContainerLength <= mediaContainerWidth){
+            setShowIcon(false);
+        }
 
         if (showIcon) {
             

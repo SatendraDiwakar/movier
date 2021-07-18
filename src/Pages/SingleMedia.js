@@ -78,15 +78,19 @@ export default function SingleMedia({ match }) {
                         video={media.videos.results[0] ? `https://www.youtube.com/watch?v=${media.videos.results[0].key}` : ''}
                     />
                 </div>
-                <List listHeading="Cast" listId="mediaCast" showIcon={true}>
-                    {
-                        media.cast.map(item => {
-                            return <ActorCard actorName={item.name} actorImg={
-                                item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noProfileImage
-                            } />
-                        })
-                    }
-                </List>
+                {
+                    media.cast.length > 0 ?
+                        <List listHeading="Cast" listId="mediaCast" showIconProp={true}>
+                            {
+                                media.cast.map(item => {
+                                    return <ActorCard actorName={item.name} actorImg={
+                                        item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noProfileImage
+                                    } />
+                                })
+                            }
+                        </List>
+                        : null
+                }
 
                 <SimilarMedia
                     mediaList={media.similarMedia.results}

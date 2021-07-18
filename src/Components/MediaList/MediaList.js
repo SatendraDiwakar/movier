@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 //  react router
 import { Link } from 'react-router-dom'
 // config
@@ -7,7 +7,7 @@ import { POSTER_SIZE, IMAGE_BASE_URL } from '../../config';
 import List from '../List/List'
 import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 
-export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage}) {
+export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
 
     const styl = {
         flexWrap: 'wrap',
@@ -15,11 +15,14 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
         justifyContent: 'space-evenly'
     }
 
+    if (mediaList.length <= 0)
+        return null
+
     return <List
         listHeading={mediaListHeading}
         listId={mediaType}
         styl={fromPage === 'searchPage' ? styl : null}
-        showIcon={fromPage === 'searchPage' ? false : true}
+        showIconProp={fromPage === 'searchPage' ? false : true}
     >
         {
             mediaList.map(item => {

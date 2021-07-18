@@ -14,6 +14,7 @@ export default function SearchItems({ match }) {
     const [mediaType, setMediaType] = useState('Movies'); // media type state for buttons
     const [loading, setLoading] = useState(true); // state for preloader
     const [loaderForLoadmore, setloaderForLoadmore] = useState(false); // state for loadmore-spinner
+    const [chz, setChz] = useState(false);
 
     // Route params identifiers
     let searchTermParam = useRef(match.params.searchTerm);
@@ -31,7 +32,7 @@ export default function SearchItems({ match }) {
     const fetchSearched = useCallback(async (medType, searchTerm, page) => {
         let searchResults;
         try {
-
+            setChz(false);
             // checking if user searched for new media 
             // if it is false then fetch next page
             if (searchTermParam.current !== match.params.searchTerm) {
@@ -40,6 +41,11 @@ export default function SearchItems({ match }) {
             } else {
                 searchResults = await API.fetchSearch(medType, searchTerm, page);
                 searchTermParam.current = match.params.searchTerm;
+            }
+
+            // Checking if any data is fetched or not related to search term
+            if (searchResults.results.length <= 0) {
+                setChz(true);
             }
 
             // sorting search results based on popularity in decending order
@@ -55,7 +61,7 @@ export default function SearchItems({ match }) {
                     // checking if user searched for new media 
                     if (seT.current !== searchTerm) {
                         return { seRes: [...res], totalPage }
-                    }                    
+                    }
                     // if it is false then updating state with next page
                     return { seRes: [...prevItems.seRes, ...res], totalPage }
                 })
@@ -74,7 +80,7 @@ export default function SearchItems({ match }) {
                 })
             }
             seT.current = searchTerm // updating search term if its changed
-            
+
             // to remove spinner after fetch
             setLoading(false)
             setloaderForLoadmore(false)
@@ -113,6 +119,7 @@ export default function SearchItems({ match }) {
         setMediaType('Tv Shows')
     }
 
+
     useEffect(() => {
         let medType;
         if (!loaderForLoadmore)
@@ -123,7 +130,7 @@ export default function SearchItems({ match }) {
             medType = 'tv'
         }
         fetchSearched(medType, match.params.searchTerm, page);
-    }, [mediaType, match.params.searchTerm, page, fetchSearched])
+    }, [mediaType, match.params.searchTerm, page, loaderForLoadmore, fetchSearched])
 
 
     // Returning preloader during data fetch
@@ -145,32 +152,39 @@ export default function SearchItems({ match }) {
                     id="tv-type-button"
                     onClick={tvShowsButtonClick}>Tv Shows</button>
             </div>
-            <SearchedMedia
-                mediaList={mediaType === 'Movies' ? searchMovies.seRes : searchTv.seRes}
-                mediaListHeading={searchMovies.seRes.length !== 0 ? `${mediaType} related to '${match.params.searchTerm}'` : `Sorry, No Results are found for '${match.params.searchTerm}'`}
-                mediaType={mediaType === 'Movies' ? 'movie' : 'tv'}
-                fromPage="searchPage"
-            />
-
-            {/* spinner used for loading more data */}
             {
-                loaderForLoadmore &&
-                <div className="loader">
-                    <div className="circle rotate">
-                    </div>
-                </div>
+                chz ?
+                    <h2 className="no-result-found">{`Sorry, no results found for '${match.params.searchTerm}'`}</h2>
+                    : <>
+                        <SearchedMedia
+                            mediaList={mediaType === 'Movies' ? searchMovies.seRes : searchTv.seRes}
+                            mediaListHeading={`${mediaType} related to '${match.params.searchTerm}'`}
+                            mediaType={mediaType === 'Movies' ? 'movie' : 'tv'}
+                            fromPage="searchPage"
+                        />
+
+                        {/* spinner used for loading more data */}
+                        {
+                            loaderForLoadmore &&
+                            <div className="loader">
+                                <div className="circle rotate">
+                                </div>
+                            </div>
+                        }
+                        <div className="media-type-button-container" style={{ marginBottom: '10rem' }}>
+                            <button className="media-type-button"
+                                id="movie-type-button"
+                                onClick={() => {
+                                    setloaderForLoadmore(true);
+                                    loadMorePages();
+                                }} >Load More</button>
+                            <button className="media-type-button"
+                                id="movie-type-button"
+                                onClick={() => { window.scrollTo(0, 0) }} >Babk to Top</button>
+                        </div>
+                    </>
             }
-            <div className="media-type-button-container" style={{ marginBottom: '10rem' }}>
-                <button className="media-type-button"
-                    id="movie-type-button"
-                    onClick={() => {
-                        setloaderForLoadmore(true);
-                        loadMorePages();
-                    }} >Load More</button>
-                <button className="media-type-button"
-                    id="movie-type-button"
-                    onClick={() => { window.scrollTo(0, 0) }} >Babk to Top</button>
-            </div>
+
         </div>
     </div>
 }
