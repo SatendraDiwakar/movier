@@ -1,7 +1,6 @@
 import {
-  SEARCH_BASE_URL,
+  SEARCH_MOVIE_BASE_URL,
   SEARCH_TV_BASE_URL,
-  POPULAR_BASE_URL,
   API_URL,
   API_KEY,
   REQUEST_TOKEN_URL,
@@ -19,7 +18,7 @@ const defaultConfig = {
 const apiSettings = {
   fetchSearch: async (medType, searchTerm, page) => {
     const endpoint = (searchTerm && (medType==='movie'))
-      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+      ? `${SEARCH_MOVIE_BASE_URL}${searchTerm}&page=${page}`
       : `${SEARCH_TV_BASE_URL}${searchTerm}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },

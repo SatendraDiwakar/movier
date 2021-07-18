@@ -9,6 +9,7 @@ import heroHome from '../Images/heroHome.jpg'
 // component
 import CardMain from '../Components/UI/Card Main/CardMain';
 import PopularMedia from '../Components/MediaList/MediaList';
+import Loader from '../Components/UI/Loader/Loader';
 
 export default function Home() {
 
@@ -16,24 +17,26 @@ export default function Home() {
     const context = useContext(MovierContext);
     const { loading, popularTv, popularMovies } = context;
 
-    return <>
-        <div className="hero">
+    // Returning preloader if context data is not there
+    if (loading) {
+        return <Loader />
+    }
+
+    return <div className="hero">
+        {!loading &&
             <div className="container container-item hero-content">
+
                 <CardMain hero={heroHome} showCarousel={false} />
-                {!loading &&
-                    <>
-                        <PopularMedia
-                            mediaList={popularMovies.results}
-                            mediaListHeading="Popular Movies"
-                            mediaType="movie"
-                        />
-                        <PopularMedia
-                            mediaList={popularTv.results}
-                            mediaListHeading="Popular Tv Shows"
-                            mediaType="tv"
-                        />
-                    </>
-                }
+                <PopularMedia
+                    mediaList={popularMovies.results}
+                    mediaListHeading="Popular Movies"
+                    mediaType="movie"
+                />
+                <PopularMedia
+                    mediaList={popularTv.results}
+                    mediaListHeading="Popular Tv Shows"
+                    mediaType="tv"
+                />
                 <div className="media-type-button-container">
                     <button className="media-type-button"
                         id="movie-type-button"
@@ -41,7 +44,8 @@ export default function Home() {
                         Babk to Top
                     </button>
                 </div>
+
             </div>
-        </div>
-    </>
+        }
+    </div>
 }

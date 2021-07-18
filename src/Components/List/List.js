@@ -16,7 +16,8 @@ export default function List({ children, listHeading, listId, showIcon, styl }) 
         let mediaContainerLeft = mediaContainer.scrollLeft; // scrolled position of elements left
         let mediaContainerWidth = mediaContainer.offsetWidth; // width of element
         let mediaContainerLength = mediaContainer.scrollWidth; // total scroll lenght
-        
+        // let thumbWidth = document.getElementsByClassName("thumbnail")[0].offsetWidth;
+
         if (showIcon) {
             
             if (mediaContainer.scrollLeft === 0) {

@@ -37,7 +37,6 @@
   font-size: 2rem;
   color: #d9d9e3;
   overflow-y: scroll;
-  cursor: move;
 }
 .rating-container {
   width: 100%;

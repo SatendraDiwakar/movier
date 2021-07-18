@@ -14,12 +14,8 @@ export default function Navbar() {
     // states
     const [hideNav, setHideNav] = useState(false);
     const [inputValue, setInputValue] = useState("")
-
     // refs
     const refHeader = useRef(null);
-    const inputRef = useRef(null);
-    const searchButton = useRef(null);
-
     // react rouse hook
     const history = useHistory();
 
@@ -62,7 +58,6 @@ export default function Navbar() {
                     <Logo logo={logo} />
                     <div className="search-container">
                         <input
-                            ref={inputRef}
                             type="search"
                             className="search-bar"
                             placeholder="search..."

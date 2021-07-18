@@ -9,12 +9,13 @@ import List from '../Components/List/List';
 import CardMain from '../Components/UI/Card Main/CardMain';
 import MediaDetailsCard from '../Components/UI/MediaDetailsCard/MediaDetailsCard';
 import ActorCard from '../Components/UI/ActorCard/ActorCard';
+import Loader from '../Components/UI/Loader/Loader';
 // Image
 import noProfileImage from '../Images/noProfileImage.PNG'
 
 export default function SingleMedia({ match }) {
 
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // whenever a new movie loaded window will goto top
 
     // state
     const [media, setMedia] = useState({});
@@ -29,8 +30,7 @@ export default function SingleMedia({ match }) {
         boxShadow: '0 0 6px #6d85ab'
     }
 
-    console.log(media);
-    // Rouse params identifiers
+    // Route params identifiers
     let id = parseInt(match.params.movie);
     let medType = match.params.mediaType;
 
@@ -56,15 +56,16 @@ export default function SingleMedia({ match }) {
     }
 
     useEffect(() => {
+        setLoading(true);
         fetchMedia(id, medType);
     }, [id, medType])
 
     if (loading) {
-        return null;
+        return <Loader />;
     }
 
-    return <>
-        <div className="hero">
+    return <div className="hero">
+        {!loading &&
             <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
                 <div className="media-name-container"><p className="media-name">{media.original_name || media.original_title}</p></div>
                 <div className="media-details">
@@ -86,23 +87,21 @@ export default function SingleMedia({ match }) {
                         })
                     }
                 </List>
-                {!loading &&
-                    <>
-                        <SimilarMedia
-                            mediaList={media.similarMedia.results}
-                            mediaListHeading={medType === 'tv' ? `Similar ${medType} shows` : `Similar ${medType}s`}
-                            mediaType={medType}
-                        />
-                        <div className="media-type-button-container">
-                            <button className="media-type-button"
-                                id="movie-type-button"
-                                onClick={() => { window.scrollTo(0, 0) }} >
-                                Babk to Top
-                            </button>
-                        </div>
-                    </>
-                }
+
+                <SimilarMedia
+                    mediaList={media.similarMedia.results}
+                    mediaListHeading={medType === 'tv' ? `Similar ${medType} shows` : `Similar ${medType}s`}
+                    mediaType={medType}
+                />
+                <div className="media-type-button-container">
+                    <button className="media-type-button"
+                        id="movie-type-button"
+                        onClick={() => { window.scrollTo(0, 0) }} >
+                        Babk to Top
+                    </button>
+                </div>
+
             </div>
-        </div>
-    </>
+        }
+    </div>
 }
