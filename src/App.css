@@ -104,7 +104,7 @@ header::before {
   width: 100%;
   max-width: 122.5rem;
   margin: 0 auto;
-  padding: 0 2.4rem;
+  padding: 0 3rem;
 }
 .container-item {
   display: flex;
@@ -252,14 +252,19 @@ header::before {
 }
 .media-name {
   margin: 0.5rem;
-  font-family: "Sulphur Point", sans-serif;
-  font-size: 5rem;
-  letter-spacing: 1px;
   border-radius: 20px;
   border: 2px solid #6d85ab;
   box-shadow: 0 0 5px #6d85ab;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
+  animation: blink 0.5s ease-in-out infinite;
+}
+.med-name-p {
+  font-family: "Sulphur Point", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 1px;
 }
 .media-details {
   width: 100%;
@@ -270,7 +275,8 @@ header::before {
 
 /* search movie page */
 .no-result-found {
-  font-family: 'Sulphur Point', sans-serif;
+  margin-bottom: 10rem;
+  font-family: "Sulphur Point", sans-serif;
   font-size: 3rem;
   letter-spacing: 3px;
   color: #fff;
@@ -309,3 +315,98 @@ header::before {
   box-shadow: 0 0 5px #6d85ab;
 }
 /* search movie page ends */
+
+/* Animations */
+.animateLeftReveal {
+  opacity: 0;
+  animation: textRevealFromLeft 1.2s linear 0.5s forwards;
+}
+
+.media-details > .card-main {
+  opacity: 0;
+  animation: scaleElement 0.8s ease-in-out 2s forwards;
+  transform-origin: left top;
+}
+.home > .card-main {
+  opacity: 0;
+  animation: scaleElement .8s ease-in-out .3s forwards;
+  transform-origin: center;
+}
+
+.plot {
+  opacity: 0;
+  animation: revealFromTop 1s ease-in-out 2s forwards;
+}
+
+.rating-container {
+  opacity: 0;
+  animation: revealFromTop 1s ease-in-out 2.4s forwards;
+}
+
+.info-container > a {
+  opacity: 0;
+  animation: revealFromTop 1s ease-in-out 2.8s forwards;
+}
+
+@keyframes blink {
+  0% {
+    box-shadow: 0 0 5px #6d85ab;
+  }
+  50% {
+    box-shadow: 0 0 10px #6d85ab;
+  }
+  100% {
+    box-shadow: 0 0 5px #6d85ab;
+  }
+}
+
+@keyframes reveal {
+  0%{
+    opacity: 0;
+  }  
+  100%{
+    opacity: 1;
+  }  
+}
+
+@keyframes textRevealFromLeft {
+  from {
+    opacity: 1;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  to {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes scaleElement {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50%{
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes revealFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}

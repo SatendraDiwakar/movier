@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 
 // context
 import { MovierContext } from '../Context'
@@ -24,7 +24,7 @@ export default function Home() {
 
     return <div className="hero">
         {!loading &&
-            <div className="container container-item hero-content">
+            <div className="home container container-item hero-content">
 
                 <CardMain hero={heroHome} showCarousel={false} />
                 <PopularMedia

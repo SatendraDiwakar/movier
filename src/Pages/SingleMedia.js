@@ -67,7 +67,11 @@ export default function SingleMedia({ match }) {
     return <div className="hero">
         {!loading &&
             <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
-                <div className="media-name-container"><p className="media-name">{media.original_name || media.original_title}</p></div>
+                <div className="media-name-container">
+                    <div className="media-name">
+                        <p className="med-name-p animateLeftReveal">{media.original_name || media.original_title}</p>
+                    </div>
+                </div>
                 <div className="media-details">
                     <CardMain styl={styleHero} showCarousel={true} hero={
                         media.backdrop_path ? IMAGE_BASE_URL + BACKDROP_SIZE + media.backdrop_path : "noBackdropImage"

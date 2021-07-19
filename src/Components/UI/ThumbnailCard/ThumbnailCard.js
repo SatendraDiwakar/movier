@@ -5,8 +5,8 @@ import { BsImage } from 'react-icons/bs'
 import './ThumbnailCard.css'
 
 export default function ThumbnailCard({ thumbnail, title }) {
-
-    return <div className="thumbnail-card">
+  
+    return <div className="thumbnail-card" >
         <div className="thumbnail" >
             {thumbnail === "noPosterImage" ?
                 <BsImage className="image-icon" style={{ fontSize: '6rem' }} />

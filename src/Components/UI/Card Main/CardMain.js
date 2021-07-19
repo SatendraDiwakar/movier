@@ -4,7 +4,7 @@ import { BsImage } from 'react-icons/bs'
 // style
 import './CardMain.css'
 
-export default function CardMain({ hero, styl, showCarousel }) {
+export default function CardMain({ hero, styl }) {
 
     return <div className="card-main" style={{ ...styl }}>
         {hero === "noBackdropImage" ?

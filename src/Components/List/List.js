@@ -4,14 +4,14 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 // styles
 import './List.css'
 
-export default function List({ children, listHeading, listId, showIconProp, styl }) {
+export default function List({ children, listHeading, listId, showIconProp, styl, rv }) {
 
-    const [showIcon,setShowIcon] = useState(showIconProp);
-
+    const [showIcon, setShowIcon] = useState(showIconProp);
+ 
     const refLeftButton = useRef(null); // refering left scroll button
     const refRightButton = useRef(null); // refering right scroll button
 
-    // left scroll button unhide
+    // logic for scroll buttons hide/show
     useEffect(() => {
         // identifiers
         let mediaContainer = document.getElementById(listId);
@@ -19,51 +19,54 @@ export default function List({ children, listHeading, listId, showIconProp, styl
         let mediaContainerWidth = mediaContainer.offsetWidth; // width of element
         let mediaContainerLength = mediaContainer.scrollWidth; // total scroll lenght
 
-
-        if(mediaContainerLength <= mediaContainerWidth){
+        if (mediaContainerLength <= mediaContainerWidth) {
             setShowIcon(false);
         }
 
         if (showIcon) {
-            
+
             if (mediaContainer.scrollLeft === 0) {
                 refLeftButton.current.style = "display: none";
             }
-            
+
             // add listener for scroll
             mediaContainer.addEventListener('scroll', () => {
-                
+
                 // getting updated scroll position
                 mediaContainerLeft = mediaContainer.scrollLeft;
-                mediaContainerWidth = mediaContainer.offsetWidth; 
+                mediaContainerWidth = mediaContainer.offsetWidth;
                 mediaContainerLength = mediaContainer.scrollWidth;
-                
+
                 // logic to hide/show left scroll button
                 if (mediaContainer.scrollLeft === 0) {
                     refLeftButton.current.style = "display: none";
                 } else {
                     refLeftButton.current.style = "display: block";
                 }
-                
+
                 // logic to hide/show right scroll button
                 if (Math.ceil(mediaContainerLeft + mediaContainerWidth) >= mediaContainerLength) {
                     refRightButton.current.style = "display: none";
                 } else {
                     refRightButton.current.style = "display: block";
                 }
+
+                // we can style individual thumb or just mediacontainer
             })
         }
+
     }, [listId, showIcon])
 
+    
     // scroll distance calculation functionality
     let scrollBy = 0; // initial
     function handleClick(direction) {
         // identifiers
         let thumbWidth = document.getElementsByClassName("thumbnail")[0].offsetWidth;
         let mediaContainer = document.getElementById(listId);
-        
+
         scrollBy = mediaContainer.scrollLeft; // updated
-        
+
         if (direction === 'right') {
             if (scrollBy < mediaContainer.scrollWidth) {
                 if (mediaContainer.offsetWidth < 250) {

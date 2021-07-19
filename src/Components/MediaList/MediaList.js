@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 //  react router
 import { Link } from 'react-router-dom'
 // config
@@ -15,9 +15,6 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
         justifyContent: 'space-evenly'
     }
 
-    if (mediaList.length <= 0)
-        return null
-
     return <List
         listHeading={mediaListHeading}
         listId={mediaType}
@@ -25,7 +22,7 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
         showIconProp={fromPage === 'searchPage' ? false : true}
     >
         {
-            mediaList.map(item => {
+            mediaList.length > 0 && mediaList.map(item => {
                 return (
                     <Link key={item.id} to={`/${mediaType}/${item.id}/`}>
                         <ThumbnailCard id={item.id} title={item.title || item.name} thumbnail={

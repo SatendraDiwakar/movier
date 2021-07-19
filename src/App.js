@@ -9,14 +9,14 @@ import Navbar from './Components/NavBar/Navbar';
 // pages
 import Home from './Pages/Home'
 import SingleMedia from './Pages/SingleMedia';
-import SearchItems from './Pages/SearchItems';
+import SearchedMedia from './Pages/SearchedMedia';
 import Error from './Pages/Error'
 
 function App() {
   return <>
     <Navbar />
     <Switch>
-      <Route path="/s/:searchTerm/" component={SearchItems} />
+      <Route path="/s/:searchTerm/" component={SearchedMedia} />
       <Route path="/:mediaType/:movie/" component={SingleMedia} />
       <Route path="/" component={Home} />
       <Route component={Error} />
