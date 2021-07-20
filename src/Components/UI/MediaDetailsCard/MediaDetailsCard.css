@@ -58,21 +58,22 @@
   justify-content: center;
   border-radius: 20px;
   border: none;
-  border: 3px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255);
   background: rgb(5, 130, 237);
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255);
   cursor: pointer;
   transition: all 0.3s;
 }
 .trailer:hover {
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 6px rgba(255, 0, 0);
+  border: 2px solid rgba(255, 0, 0);
   background: rgba(0, 0, 0, 0.3);
+  color: #fff;
 }
 .youtube-icon{
     margin-right: 1.5rem;
     color: rgb(0, 0, 0);
 }
 .trailer:hover .youtube-icon{
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 0, 0);
 }

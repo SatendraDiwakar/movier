@@ -25,8 +25,7 @@ export default function Home() {
     return <div className="hero">
         {!loading &&
             <div className="home container container-item hero-content">
-
-                <CardMain hero={heroHome} showCarousel={false} />
+                <CardMain hero={heroHome}/>
                 <PopularMedia
                     mediaList={popularMovies.results}
                     mediaListHeading="Popular Movies"
@@ -44,7 +43,6 @@ export default function Home() {
                         Babk to Top
                     </button>
                 </div>
-
             </div>
         }
     </div>

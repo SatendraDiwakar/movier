@@ -87,7 +87,7 @@ export default function SingleMedia({ match }) {
                         <List listHeading="Cast" listId="mediaCast" showIconProp={true}>
                             {
                                 media.cast.map(item => {
-                                    return <ActorCard actorName={item.name} actorImg={
+                                    return <ActorCard  actorName={item.name} actorImg={
                                         item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noProfileImage
                                     } />
                                 })

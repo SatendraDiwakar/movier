@@ -1,6 +1,8 @@
 import React from 'react'
 //  react router
 import { Link } from 'react-router-dom'
+// unique id package
+import uniqid from 'uniqid';
 // config
 import { POSTER_SIZE, IMAGE_BASE_URL } from '../../config';
 // Component
@@ -9,25 +11,23 @@ import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 
 export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
 
-    const styl = {
-        flexWrap: 'wrap',
-        gap: '4rem 3rem',
-        justifyContent: 'space-evenly'
-    }
-
     return <List
         listHeading={mediaListHeading}
         listId={mediaType}
-        styl={fromPage === 'searchPage' ? styl : null}
-        showIconProp={fromPage === 'searchPage' ? false : true}
+        fromPage={fromPage}
     >
         {
             mediaList.length > 0 && mediaList.map(item => {
+                let uid = uniqid();
                 return (
-                    <Link key={item.id} to={`/${mediaType}/${item.id}/`}>
-                        <ThumbnailCard id={item.id} title={item.title || item.name} thumbnail={
-                            item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : "noPosterImage"
-                        } />
+                    <Link key={uid} to={`/${mediaType}/${item.id}/`}>
+                        <ThumbnailCard
+                            listId={mediaType}
+                            fromPage={fromPage === 'searchPage' ? 'searchPage' : null}
+                            title={item.title || item.name}
+                            thumbnail={
+                                item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : "noPosterImage"
+                            } />
                     </Link>
                 )
             })

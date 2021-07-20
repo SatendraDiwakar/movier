@@ -1,4 +1,5 @@
 .list {
+  opacity: 0;
   width: 100%;
   margin: 2rem 0;
   display: block;
@@ -10,8 +11,6 @@
   margin-bottom: 2rem;
   font-size: 3rem;
   letter-spacing: 2.5px;
-  opacity: 0;
-  animation: textRevealFromLeft 1.5s linear 0.5s forwards;
 }
 .list-container {
   padding: 1rem;

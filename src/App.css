@@ -329,7 +329,7 @@ header::before {
 }
 .home > .card-main {
   opacity: 0;
-  animation: scaleElement .8s ease-in-out .3s forwards;
+  animation: scaleElement .8s ease-in-out .5s forwards;
   transform-origin: center;
 }
 
