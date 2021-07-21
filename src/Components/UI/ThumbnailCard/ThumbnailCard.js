@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 // react icons
 import { BsImage } from 'react-icons/bs'
 // custom hooks
@@ -6,10 +6,9 @@ import { useAnimateOnScroll } from '../../../hooks/useAnimateOnScroll';
 // style
 import './ThumbnailCard.css'
 
-export default function ThumbnailCard({ listId, thumbnail, title, fromPage }) {
+export default function ThumbnailCard({ listId, thumbnail, title, fromPage, loadMoreDone }) {
 
-    const thumbRef = useRef(null);
-    const { addReveal } = useAnimateOnScroll(thumbRef, listId, fromPage);
+    const { addReveal, thumbRef } = useAnimateOnScroll(listId, fromPage, loadMoreDone); // custom hook
 
     const revealElement = {
         animation: 'reveal 1s ease-in-out forwards'

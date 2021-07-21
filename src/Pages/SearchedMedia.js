@@ -185,6 +185,7 @@ export default function SearchItems({ match }) {
                 }
                 mediaType={mediaType === 'Movies' ? 'movie' : 'tv'}
                 fromPage="searchPage"
+                loadMoreDone={loaderForLoadmore}
             />
 
             {/* spinner used for loading more data */}

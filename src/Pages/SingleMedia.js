@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+// Unique id
+import uniqid from 'uniqid'
 // API
 import API from '../API'
 // config
@@ -15,7 +17,10 @@ import noProfileImage from '../Images/noProfileImage.PNG'
 
 export default function SingleMedia({ match }) {
 
-    window.scrollTo(0, 0); // whenever a new movie loaded window will goto top
+    useEffect(() => {
+        window.scrollTo(0, 0); // whenever a new movie loaded window will goto top
+    }, [])
+
 
     // state
     const [media, setMedia] = useState({});
@@ -54,7 +59,6 @@ export default function SingleMedia({ match }) {
             console.log(error);
         }
     }
-
     useEffect(() => {
         setLoading(true);
         fetchMedia(id, medType);
@@ -66,7 +70,7 @@ export default function SingleMedia({ match }) {
 
     return <div className="hero">
         {!loading &&
-            <div className="hero-content container container-item" style={{ position: 'absolute', top: '14rem' }}>
+            <div className="hero-content container container-item">
                 <div className="media-name-container">
                     <div className="media-name">
                         <p className="med-name-p animateLeftReveal">{media.original_name || media.original_title}</p>
@@ -87,7 +91,8 @@ export default function SingleMedia({ match }) {
                         <List listHeading="Cast" listId="mediaCast" showIconProp={true}>
                             {
                                 media.cast.map(item => {
-                                    return <ActorCard  actorName={item.name} actorImg={
+                                    let uid = uniqid();
+                                    return <ActorCard key={uid} actorName={item.name} actorImg={
                                         item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path : noProfileImage
                                     } />
                                 })
@@ -95,20 +100,25 @@ export default function SingleMedia({ match }) {
                         </List>
                         : null
                 }
-
-                <SimilarMedia
-                    mediaList={media.similarMedia.results}
-                    mediaListHeading={medType === 'tv' ? `Similar ${medType} shows` : `Similar ${medType}s`}
-                    mediaType={medType}
-                />
-                <div className="media-type-button-container">
-                    <button className="media-type-button"
-                        id="movie-type-button"
-                        onClick={() => { window.scrollTo(0, 0) }} >
-                        Babk to Top
-                    </button>
-                </div>
-
+                {
+                    media.similarMedia.results.length > 0 &&
+                    <SimilarMedia
+                        mediaList={media.similarMedia.results}
+                        mediaListHeading={medType === 'tv' ? `Similar ${medType} shows` : `Similar ${medType}s`}
+                        mediaType={medType}
+                    />
+                }
+                {
+                    (media.similarMedia.results.length > 0
+                        || media.cast.length > 0) &&
+                    <div className="media-type-button-container">
+                        <button className="media-type-button"
+                            id="movie-type-button"
+                            onClick={() => { window.scrollTo(0, 0) }} >
+                            Babk to Top
+                        </button>
+                    </div>
+                }
             </div>
         }
     </div>

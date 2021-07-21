@@ -16,7 +16,7 @@ export default function Navbar() {
     const [inputValue, setInputValue] = useState("")
     // refs
     const refHeader = useRef(null);
-    // react rouse hook
+    // react route hook
     const history = useHistory();
 
     useEffect(() => {
@@ -32,6 +32,10 @@ export default function Navbar() {
             }
             lastScrollTop = st <= 0 ? 0 : st;
         }, false);
+
+        return ()=>{
+            setHideNav(false);
+        }
     }, []);
 
     function startSearch() {

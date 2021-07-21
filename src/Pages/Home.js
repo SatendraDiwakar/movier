@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // context
 import { MovierContext } from '../Context'
@@ -16,6 +16,10 @@ export default function Home() {
     // context
     const context = useContext(MovierContext);
     const { loading, popularTv, popularMovies } = context;
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // whenever a new movie loaded window will goto top    
+    }, [])
 
     // Returning preloader if context data is not there
     if (loading) {

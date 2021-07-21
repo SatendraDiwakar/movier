@@ -74,14 +74,6 @@ header {
   overflow: hidden;
   transition: all 0.6s;
 }
-@keyframes navShow {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 header::before {
   content: "";
   width: 100%;
@@ -113,7 +105,7 @@ header::before {
   justify-content: center;
 }
 
-/* Hero starts */
+/* Hero start */
 .hero {
   width: 100%;
   display: flex;
@@ -128,7 +120,7 @@ header::before {
 }
 /* Hero ends */
 
-/* nav */
+/* nav start */
 .nav {
   height: 10.5rem;
   display: flex;
@@ -208,44 +200,9 @@ header::before {
 .search-icon {
   font-size: 3rem;
 }
-
-/* menu toggler */
-.menu {
-  display: none;
-  font-size: 4.5rem;
-  position: absolute;
-  right: 8%;
-  background: transparent;
-  color: #fff;
-  z-index: 2500;
-}
-.menu-close {
-  display: none;
-  color: rgb(255, 38, 0);
-}
-
-/* nav links */
-.nav-links {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 100;
-  text-transform: uppercase;
-  letter-spacing: 0.15rem;
-  cursor: pointer;
-}
-.link {
-  padding: 0 5px 5px;
-  margin: 0 1rem;
-  text-align: center;
-  color: rgb(255, 255, 255);
-}
-.link:hover {
-  color: #c9a570;
-  transition: color 0.5s;
-}
 /* nav ends */
 
-/* single movie page */
+/* single media page */
 .media-name-container {
   width: 100%;
   padding: 0.5rem;
@@ -271,7 +228,7 @@ header::before {
   padding: 0.5rem;
   display: flex;
 }
-/* single movie page ends */
+/* single media page ends */
 
 /* search movie page */
 .no-result-found {
@@ -304,7 +261,7 @@ header::before {
 }
 .media-type-button:hover {
   background-color: transparent;
-  color: white;
+  color: white !important;
   box-shadow: 0 0 5px #6d85ab;
   transition: all 0.5s;
 }
@@ -315,6 +272,107 @@ header::before {
   box-shadow: 0 0 5px #6d85ab;
 }
 /* search movie page ends */
+
+/* Error page */
+.error{
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 5px #6d85ab;
+  animation: blink .3s ease-in-out infinite;
+}
+.error > p {
+  padding: 2rem;
+  margin: 1rem 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  border-bottom: 1px solid #6e747e;
+}
+/* Error page ends */
+
+/* media Queries */
+@media screen and (min-width: 1600px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  html {
+    font-size: 14px;
+  }
+}
+/****************************/
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 9px;
+  }
+}
+@media screen and (max-width: 850px) {
+  html {
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .nav {
+    height: 20rem;
+    padding: 2rem 0;
+    align-items: flex-end;
+    justify-content: space-around;
+  }
+  .home-icon{
+    margin-right: 1.5rem;
+    display: initial;
+  }
+  .logo{
+    top: 5%;
+  }
+  .hero-content {
+    top: 25rem;
+  }  
+  .search-bar{
+    height: 35px;
+  }
+}
+@media screen and (max-width: 650px) {
+  html {
+    font-size: 7.5px;
+  }
+  .home-icon{
+    font-size: 4rem;
+    top: -3%;
+  }
+  .search-container{
+    margin-left: 2rem;
+  }
+  .search-icon{
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 550px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 6.5px;
+  }
+  .nav{
+    height: 22rem;
+  }
+  .hero-content{
+    top: 28rem;
+  }
+}
+
+
+/* media Queries ends */
 
 /* Animations */
 .animateLeftReveal {

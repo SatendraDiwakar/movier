@@ -9,7 +9,7 @@ import { POSTER_SIZE, IMAGE_BASE_URL } from '../../config';
 import List from '../List/List'
 import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 
-export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage }) {
+export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage, loadMoreDone }) {
 
     return <List
         listHeading={mediaListHeading}
@@ -20,14 +20,16 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
             mediaList.length > 0 && mediaList.map(item => {
                 let uid = uniqid();
                 return (
-                    <Link key={uid} to={`/${mediaType}/${item.id}/`}>
+                    <Link key={uid} to={`/media/${mediaType}/${item.id}/`}>
                         <ThumbnailCard
                             listId={mediaType}
                             fromPage={fromPage === 'searchPage' ? 'searchPage' : null}
                             title={item.title || item.name}
                             thumbnail={
                                 item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path : "noPosterImage"
-                            } />
+                            }
+                            loadMoreDone={loadMoreDone}
+                        />
                     </Link>
                 )
             })
