@@ -1,66 +1,72 @@
 import { useLayoutEffect, useEffect, useRef, useState } from "react";
 
-export const useAnimateOnScroll = (listId, fromPage, loadMoreDone ) => {
+export const useAnimateOnScroll = (listId, fromPage, loadMoreDone) => {
 
-    const [addReveal, setAddReveal] = useState(false); // state for conditional animation
+    const [addRevealThumb, setAddRevealThumb] = useState(false); // state for conditional animation
     const thumbRef = useRef(); // refers thumbnail card
-    
+
     // component mount
     const componentMount = useRef(false);
     useEffect(() => {
+        if (!loadMoreDone)
+            setAddRevealThumb(true);
         return () => {
             componentMount.current = true;
         }
-    }, [])
+    }, [loadMoreDone])
 
     // logic to hide/reveal thumbs on scroll 
     useLayoutEffect(() => {
 
-        // setting addReveal state when user scrolls up & down
+        // setting addRevealThumb state when user scrolls up & down
         function scrollUpDown() {
-            
+
             // checking if thumbs are in the view of screen or not
             if (thumbRef.current.getBoundingClientRect().top < window.innerHeight
             ) {
                 if (thumbRef.current.getBoundingClientRect().bottom > 0)
-                setAddReveal(true)
+                    setAddRevealThumb(true)
                 else
-                setAddReveal(false)
+                    setAddRevealThumb(false)
             } else {
-                setAddReveal(false)
+                setAddRevealThumb(false)
             }
         }
-        
-        // setting addReveal state when user scrolls left & right
+
+        // setting addRevealThumb state when user scrolls left & right
         function scrollLeftRight() {
 
             // checking if thumbs are in the view of screen or not
             if (thumbRef.current.getBoundingClientRect().left < document.getElementById(listId).getBoundingClientRect().right
             ) {
                 if (thumbRef.current.getBoundingClientRect().right < document.getElementById(listId).getBoundingClientRect().left)
-                    setAddReveal(false)
+                    setAddRevealThumb(false)
                 else
-                    setAddReveal(true)
+                    setAddRevealThumb(true)
             } else {
-                setAddReveal(false)
+                setAddRevealThumb(false)
             }
         }
 
         // adding scroll event listener
         if (fromPage === 'searchPage') {
-            scrollUpDown(); // initial animation for onload
-            window.addEventListener('scroll', scrollUpDown);
+            // if loadmore button is clicked then animation will be removed
+            if (!loadMoreDone) {
+                window.addEventListener('scroll', scrollUpDown);
+            } else {
+                window.removeEventListener('scroll', scrollUpDown)
+            }
         }
         else {
             scrollLeftRight(); // initial animation for onload
             document.getElementById(listId).addEventListener('scroll', scrollLeftRight)
         }
-        
+
         // for loading more media animation is removed
-        if(loadMoreDone){
-            setAddReveal(false)
+        if (loadMoreDone) {
+            setAddRevealThumb(false)
         } else {
-            setAddReveal(true)
+            setAddRevealThumb(true)
         }
 
         // clean up
@@ -81,5 +87,5 @@ export const useAnimateOnScroll = (listId, fromPage, loadMoreDone ) => {
 
     }, [listId, fromPage, loadMoreDone])
 
-    return { addReveal, thumbRef }
+    return { addRevealThumb, thumbRef }
 }

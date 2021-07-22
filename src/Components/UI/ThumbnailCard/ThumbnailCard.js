@@ -8,13 +8,13 @@ import './ThumbnailCard.css'
 
 export default function ThumbnailCard({ listId, thumbnail, title, fromPage, loadMoreDone }) {
 
-    const { addReveal, thumbRef } = useAnimateOnScroll(listId, fromPage, loadMoreDone); // custom hook
+    const { addRevealThumb, thumbRef } = useAnimateOnScroll(listId, fromPage, loadMoreDone); // custom hook
 
     const revealElement = {
         animation: 'reveal 1s ease-in-out forwards'
     }
 
-    return <div ref={thumbRef} className="thumbnail-card" style={addReveal ? revealElement : null}>
+    return <div ref={thumbRef} className="thumbnail-card" style={addRevealThumb ? revealElement : null}>
         <div className="thumbnail" >
             {thumbnail === "noPosterImage" ?
                 <BsImage className="image-icon" style={{ fontSize: '6rem' }} />

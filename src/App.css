@@ -128,10 +128,11 @@ header::before {
   align-items: center;
   position: relative;
 }
-.nav > .logo {
+.logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
 }
 
 /* logo */
@@ -219,9 +220,11 @@ header::before {
   animation: blink 0.5s ease-in-out infinite;
 }
 .med-name-p {
+  padding: 1rem;
   font-family: "Sulphur Point", sans-serif;
   font-size: 5rem;
   letter-spacing: 1px;
+  text-align: center;
 }
 .media-details {
   width: 100%;
@@ -274,7 +277,7 @@ header::before {
 /* search movie page ends */
 
 /* Error page */
-.error{
+.error {
   padding: 3rem;
   display: flex;
   align-items: center;
@@ -283,12 +286,12 @@ header::before {
   color: white;
   border-radius: 20px;
   box-shadow: 0 0 5px #6d85ab;
-  animation: blink .3s ease-in-out infinite;
+  animation: blink 0.3s ease-in-out infinite;
 }
 .error > p {
   padding: 2rem;
   margin: 1rem 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 4rem;
   letter-spacing: 2px;
   text-transform: capitalize;
@@ -307,10 +310,24 @@ header::before {
     font-size: 14px;
   }
 }
-/****************************/
+/******** For Big Screens***********/
+/*
+ Due to separate css files for components 
+ we need to mention !important in styles
+*/
 @media screen and (max-width: 1000px) {
   html {
     font-size: 9px;
+  }
+}
+@media screen and (max-width: 930px) {
+  html {
+    font-size: 8.5px;
+  }
+}
+@media screen and (max-width: 880px) {
+  html {
+    font-size: 8.2px;
   }
 }
 @media screen and (max-width: 850px) {
@@ -318,39 +335,70 @@ header::before {
     font-size: 8px;
   }
 }
+@media screen and (max-width: 830px) {
+  .media-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .media-details > .card-main {
+    width: unset !important;
+    margin: 3rem 0 !important;
+  }
+  .MediaDetailsCard {
+    width: 90% !important;
+  }
+  .info-container {
+    flex-direction: column;
+    gap: 4rem 0;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .rating-container {
+    width: 75% !important;
+  }
+  .trailer {
+    width: 50% !important;
+  }
+}
 @media screen and (max-width: 800px) {
   .nav {
     height: 20rem;
     padding: 2rem 0;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: center;
   }
-  .home-icon{
+  .home-icon {
+    position: initial;
     margin-right: 1.5rem;
     display: initial;
   }
-  .logo{
+  .logo {
     top: 5%;
   }
   .hero-content {
     top: 25rem;
-  }  
-  .search-bar{
+  }
+  .search-bar {
     height: 35px;
+  }
+  .search-icon {
+    font-size: 3.5rem;
   }
 }
 @media screen and (max-width: 650px) {
   html {
     font-size: 7.5px;
   }
-  .home-icon{
+  .home-icon {
     font-size: 4rem;
-    top: -3%;
   }
-  .search-container{
+  .home-icon {
+    font-size: 4rem;
+  }
+  .search-container {
     margin-left: 2rem;
   }
-  .search-icon{
+  .search-icon {
     font-size: 4rem;
   }
 }
@@ -358,20 +406,35 @@ header::before {
   html {
     font-size: 7px;
   }
+  .home-icon {
+    margin-right: initial;
+  }
 }
 @media screen and (max-width: 500px) {
   html {
     font-size: 6.5px;
   }
-  .nav{
+  .nav {
     height: 22rem;
   }
-  .hero-content{
+  .hero-content {
     top: 28rem;
   }
+  .home-icon {
+    font-size: 4.5rem;
+  }
+  .thumbnail-card {
+    width: 18rem !important;
+  }
 }
-
-
+@media screen and (max-width: 415px) {
+  .trailer {
+    font-size: 2rem !important;
+  }
+  .media-type-button {
+    width: 100px;
+  }
+}
 /* media Queries ends */
 
 /* Animations */
@@ -387,7 +450,7 @@ header::before {
 }
 .home > .card-main {
   opacity: 0;
-  animation: scaleElement .8s ease-in-out .5s forwards;
+  animation: scaleElement 0.8s ease-in-out 0.5s forwards;
   transform-origin: center;
 }
 
@@ -419,12 +482,12 @@ header::before {
 }
 
 @keyframes reveal {
-  0%{
+  0% {
     opacity: 0;
-  }  
-  100%{
+  }
+  100% {
     opacity: 1;
-  }  
+  }
 }
 
 @keyframes textRevealFromLeft {
@@ -443,7 +506,7 @@ header::before {
     opacity: 0;
     transform: scale(0.6);
   }
-  50%{
+  50% {
     transform: scale(1.03);
   }
   100% {

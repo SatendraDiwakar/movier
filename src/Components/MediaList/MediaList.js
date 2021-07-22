@@ -15,6 +15,7 @@ export default function MediaList({ mediaList, mediaListHeading, mediaType, from
         listHeading={mediaListHeading}
         listId={mediaType}
         fromPage={fromPage}
+        loadMoreDone={loadMoreDone}
     >
         {
             mediaList.length > 0 && mediaList.map(item => {

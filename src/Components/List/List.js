@@ -6,7 +6,7 @@ import { useListHook } from '../../hooks/useListHook';
 // styles
 import './List.css'
 
-export default function List({ children, listHeading, listId, fromPage }) {
+export default function List({ children, listHeading, listId, fromPage, loadMoreDone }) {
 
     const {
         addRevealText,
@@ -15,8 +15,8 @@ export default function List({ children, listHeading, listId, fromPage }) {
         listContainerRef,
         refLeftButton,
         refRightButton,
-        handleClick 
-    } = useListHook(fromPage); // custom hook
+        handleClick
+    } = useListHook(fromPage, loadMoreDone); // custom hook
 
     const reveal = {
         animation: 'reveal .8s ease-in-out forwards'

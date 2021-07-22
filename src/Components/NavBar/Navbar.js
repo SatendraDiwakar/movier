@@ -33,7 +33,7 @@ export default function Navbar() {
             lastScrollTop = st <= 0 ? 0 : st;
         }, false);
 
-        return ()=>{
+        return () => {
             setHideNav(false);
         }
     }, []);
@@ -55,11 +55,11 @@ export default function Navbar() {
             }
         }>
             <div className="container">
+                <Logo logo={logo} />
                 <nav className="nav">
                     <Link to="/" className="home-icon">
                         <RiHomeLine />
                     </Link>
-                    <Logo logo={logo} />
                     <div className="search-container">
                         <input
                             type="search"
