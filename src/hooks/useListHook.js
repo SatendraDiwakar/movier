@@ -83,7 +83,7 @@ export const useListHook = (fromPage, loadMoreDone) => {
                 if (fromPage !== 'searchPage') {
                     setTimeout(() => {
                         setAddReveal(true)
-                    }, 1150);
+                    }, 650);
                 } else {
                     setTimeout(() => {
                         setAddReveal(true)

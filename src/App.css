@@ -12,6 +12,7 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
+  /* overflow-x: hidden; */
 }
 
 body {
@@ -22,7 +23,6 @@ section {
   /*TOP      left*/
   /*bottom   right*/
   padding: 3.9rem 0;
-  overflow-x: hidden;
 }
 
 /* width */
@@ -115,6 +115,7 @@ header::before {
   z-index: 1000;
 }
 .hero-content {
+  overflow: hidden;
   position: absolute;
   top: 14rem;
 }
@@ -187,7 +188,6 @@ header::before {
   height: 45px;
   color: #fff;
   margin-left: 1rem;
-  padding: 0.5rem;
   padding: 0.5rem 0.8rem 0.5rem 0.5rem;
   display: flex;
   align-items: center;
@@ -201,6 +201,30 @@ header::before {
 .search-icon {
   font-size: 3rem;
 }
+
+/* Drop down Nav bar button */
+.drop-down {
+  width: 45px;
+  height: 45px;
+  font-size: 4rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 2%;
+  top: 2%;
+  color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 6px #6d85ab;
+  cursor: pointer;
+  z-index: 4000;
+  animation: blink .09s ease-in-out infinite;
+}
+.drop-down:hover{
+  animation: unset;
+}
+
 /* nav ends */
 
 /* single media page */
@@ -319,6 +343,9 @@ header::before {
   html {
     font-size: 9px;
   }
+  .list-container {
+    overflow-x: scroll !important;
+  }
 }
 @media screen and (max-width: 930px) {
   html {
@@ -328,6 +355,11 @@ header::before {
 @media screen and (max-width: 880px) {
   html {
     font-size: 8.2px;
+  }
+  /* scroll width */
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
   }
 }
 @media screen and (max-width: 850px) {
@@ -471,13 +503,13 @@ header::before {
 
 @keyframes blink {
   0% {
-    box-shadow: 0 0 5px #6d85ab;
+    box-shadow: 0 0 4px #6d85ab;
   }
   50% {
-    box-shadow: 0 0 10px #6d85ab;
+    box-shadow: 0 0 8px #6d85ab;
   }
   100% {
-    box-shadow: 0 0 5px #6d85ab;
+    box-shadow: 0 0 4px #6d85ab;
   }
 }
 

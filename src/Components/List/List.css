@@ -18,11 +18,12 @@
   display: flex;
   gap: 0 3rem;
   justify-content: space-between;
-  overflow: hidden;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 .list-container:hover {
-  overflow-x: overlay; /* for scroll bar */
+  overflow-x: overlay; 
+  /* for scroll bar */
 }
 .list-card {
   text-transform: capitalize;

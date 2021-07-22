@@ -140,7 +140,7 @@ export default function SearchItems({ match }) {
         setLoading(true)
         setNoMoreElement(null)
     }, [mediaType, match.params.searchTerm])
-
+    
     // calling fetchSearched method to get data
     useEffect(() => {
         let medType;
