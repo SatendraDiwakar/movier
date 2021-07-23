@@ -11,6 +11,7 @@ import ThumbnailCard from '../UI/ThumbnailCard/ThumbnailCard'
 
 export default function MediaList({ mediaList, mediaListHeading, mediaType, fromPage, loadMoreDone }) {
 
+    // returns list of thumbnail card based on mediaList prop
     return <List
         listHeading={mediaListHeading}
         listId={mediaType}

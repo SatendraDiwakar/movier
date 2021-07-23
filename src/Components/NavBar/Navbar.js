@@ -35,7 +35,7 @@ export default function Navbar() {
             if (st > refLastScrollTop.current) {
                 setHideNav(true);
             }
-            if(refLastScrollTop.current === 0){
+            if (refLastScrollTop.current === 0) {
                 setHideNav(false);
             }
             refLastScrollTop.current = st <= 0 ? 0 : st;
@@ -49,6 +49,7 @@ export default function Navbar() {
         }
     }, [location.pathname]);
 
+    // Change route if search button click or enter pressed when search bar focused
     function startSearch() {
         setHideNav(false);
         if (inputValue === '') {
@@ -67,6 +68,11 @@ export default function Navbar() {
             }
         }>
             <div className="container">
+                <img
+                    src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"
+                    alt="tmdb logo"
+                    className="tmdb-logo"
+                />
                 <Logo logo={logo} />
                 <nav className="nav">
                     <Link to="/" className="home-icon">

@@ -1,11 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-
 // context
 import { MovierContext } from '../Context'
-
 // Image
 import heroHome from '../Images/heroHome.jpg'
-
 // component
 import CardMain from '../Components/UI/Card Main/CardMain';
 import PopularMedia from '../Components/MediaList/MediaList';
@@ -29,7 +26,7 @@ export default function Home() {
     return <div className="hero">
         {!loading &&
             <div className="home container container-item hero-content">
-                <CardMain hero={heroHome}/>
+                <CardMain hero={heroHome} styl={{margin:'1rem 0 5rem'}}/>
                 <PopularMedia
                     mediaList={popularMovies.results}
                     mediaListHeading="Popular Movies"

@@ -2,11 +2,13 @@ import { useLayoutEffect, useEffect, useState, useRef } from 'react';
 
 export const useListHook = (fromPage, loadMoreDone) => {
 
+    // State that are gonna change based on View position of item
     const [addReveal, setAddReveal] = useState(false);
     const [addRevealText, setAddRevealText] = useState(false);
 
+    // refs
     const listRef = useRef(null); // refering list
-    const listContainerRef = useRef(null); // refering list
+    const listContainerRef = useRef(null); // refering list container
     const refLeftButton = useRef(null); // refering left scroll button
     const refRightButton = useRef(null); // refering right scroll button
 
@@ -50,13 +52,13 @@ export const useListHook = (fromPage, loadMoreDone) => {
             }
         }
 
-        // checking if list contents dont overflow then hide button
-        if (mediaContainerLength <= mediaContainerWidth) {
-            refRightButton.current.style = "display: none";
-            listContainerRef.current.style = 'justify-content: space-around'
-        }
-
+        
         if (fromPage !== 'searchPage') {
+            // checking if list contents dont overflow then hide button
+            if (mediaContainerLength <= mediaContainerWidth) {
+                refRightButton.current.style = "display: none";
+                listContainerRef.current.style = 'justify-content: space-around';
+            }
             if (listContainerRef.current.scrollLeft === 0) {
                 refLeftButton.current.style = "display: none";
             }

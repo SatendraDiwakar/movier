@@ -13,22 +13,20 @@ html {
   font-size: 10px;
   scroll-behavior: smooth;
   /* overflow-x: hidden; */
+  background: #1a1b20;
 }
 
 body {
   background: #1a1b20;
 }
 
-section {
-  /*TOP      left*/
-  /*bottom   right*/
-  padding: 3.9rem 0;
-}
+
+/* Scroll Bar start */
 
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
-  height: 6px;
+  height: 3px;
 }
 ::-webkit-scrollbar-button {
   display: block;
@@ -48,6 +46,7 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+/* Scroll Bar start ends */
 
 img {
   width: 100%;
@@ -57,10 +56,6 @@ img {
 a {
   text-decoration: none;
   cursor: auto;
-}
-
-li {
-  list-style: none;
 }
 
 header {
@@ -117,13 +112,13 @@ header::before {
 .hero-content {
   overflow: hidden;
   position: absolute;
-  top: 14rem;
+  top: 16rem;
 }
 /* Hero ends */
 
 /* nav start */
 .nav {
-  height: 10.5rem;
+  height: 12.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,7 +127,8 @@ header::before {
 .logo {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 40%;
+  transform: translate(-50%,-50%);
   z-index: 1;
 }
 
@@ -140,6 +136,13 @@ header::before {
 .logo {
   width: 12.8rem;
   margin: 1rem 0;
+}
+.tmdb-logo{
+  width: 128px;
+  height: 30px;
+  position: absolute;
+  right: 15%;
+  top: 5%;
 }
 
 /* home icon */
@@ -149,11 +152,11 @@ header::before {
   display: flex;
   position: relative;
   left: 5%;
+  border-radius: 100%;
   color: #fff;
   cursor: pointer;
 }
 .home-icon:hover {
-  border-radius: 100%;
   box-shadow: 0 0 6px #6d85ab;
 }
 
@@ -206,7 +209,7 @@ header::before {
 .drop-down {
   width: 45px;
   height: 45px;
-  font-size: 4rem;
+  font-size: 3.5rem;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -224,7 +227,6 @@ header::before {
 .drop-down:hover{
   animation: unset;
 }
-
 /* nav ends */
 
 /* single media page */
@@ -257,7 +259,7 @@ header::before {
 }
 /* single media page ends */
 
-/* search movie page */
+/* searched media page */
 .no-result-found {
   margin-bottom: 10rem;
   font-family: "Sulphur Point", sans-serif;
@@ -273,7 +275,7 @@ header::before {
   border-bottom: 1px solid #6e747e;
 }
 .media-type-button {
-  width: 130px;
+  width: 13rem;
   padding: 0.5rem;
   margin: 0.5rem 1.5rem;
   font-family: "Roboto", sans-serif;
@@ -298,7 +300,7 @@ header::before {
   color: white;
   box-shadow: 0 0 5px #6d85ab;
 }
-/* search movie page ends */
+/* searched media page ends */
 
 /* Error page */
 .error {
@@ -343,9 +345,6 @@ header::before {
   html {
     font-size: 9px;
   }
-  .list-container {
-    overflow-x: scroll !important;
-  }
 }
 @media screen and (max-width: 930px) {
   html {
@@ -355,11 +354,6 @@ header::before {
 @media screen and (max-width: 880px) {
   html {
     font-size: 8.2px;
-  }
-  /* scroll width */
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
   }
 }
 @media screen and (max-width: 850px) {
@@ -406,6 +400,7 @@ header::before {
   }
   .logo {
     top: 5%;
+    transform: translate(-50%,0);
   }
   .hero-content {
     top: 25rem;
@@ -458,6 +453,11 @@ header::before {
   .thumbnail-card {
     width: 18rem !important;
   }
+  
+  .tmdb-logo{
+    width: 100px;
+    right: 2%;
+  }
 }
 @media screen and (max-width: 415px) {
   .trailer {
@@ -467,14 +467,14 @@ header::before {
     width: 100px;
   }
 }
-/* media Queries ends */
+/* Media Queries ends */
+
 
 /* Animations */
 .animateLeftReveal {
   opacity: 0;
   animation: textRevealFromLeft 1.2s linear 0.5s forwards;
 }
-
 .media-details > .card-main {
   opacity: 0;
   animation: scaleElement 0.8s ease-in-out 2s forwards;
@@ -482,20 +482,17 @@ header::before {
 }
 .home > .card-main {
   opacity: 0;
-  animation: scaleElement 0.8s ease-in-out 0.5s forwards;
+  animation: scaleElement 0.8s ease-in-out 0.2s forwards;
   transform-origin: center;
 }
-
 .plot {
   opacity: 0;
   animation: revealFromTop 1s ease-in-out 2s forwards;
 }
-
 .rating-container {
   opacity: 0;
   animation: revealFromTop 1s ease-in-out 2.4s forwards;
 }
-
 .info-container > a {
   opacity: 0;
   animation: revealFromTop 1s ease-in-out 2.8s forwards;
@@ -506,7 +503,7 @@ header::before {
     box-shadow: 0 0 4px #6d85ab;
   }
   50% {
-    box-shadow: 0 0 8px #6d85ab;
+    box-shadow: 0 0 10px #6d85ab;
   }
   100% {
     box-shadow: 0 0 4px #6d85ab;

@@ -6,6 +6,7 @@ import './MediaDetailsCard.css'
 
 export default function MediaDetailsCard({ overview, rating, video }) {
 
+    // checks if trailer is available or not
     function handleClick() {
         if (video === '') {
             alert("Trailer is Unavailable")
@@ -20,7 +21,7 @@ export default function MediaDetailsCard({ overview, rating, video }) {
                     <p>{overview}</p>
                 </div>
             </div>
-            <div className="rating-container"><p>Rating: <span className="rating">{rating}</span></p></div>
+            <div className="rating-container"><p>Rating : <span className="rating">{rating}</span></p></div>
             <a href={video === '' ? null : video} onClick={handleClick} target="_blank" rel="noopener noreferrer" className="trailer"><AiOutlineYoutube className="youtube-icon" /> Watch Trailer</a>
         </div>
     </div>

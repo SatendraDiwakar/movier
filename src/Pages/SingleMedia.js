@@ -18,9 +18,8 @@ import noProfileImage from '../Images/noProfileImage.PNG'
 export default function SingleMedia({ match }) {
 
     useEffect(() => {
-        window.scrollTo(0, 0); // whenever a new movie loaded window will goto top
+        window.scrollTo(0, 0); // whenever a new movie/tv shows loaded window will goto top
     }, [])
-
 
     // state
     const [media, setMedia] = useState({});

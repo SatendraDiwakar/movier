@@ -2,7 +2,9 @@ import { useLayoutEffect, useEffect, useRef, useState } from "react";
 
 export const useAnimateOnScroll = (listId, fromPage, loadMoreDone) => {
 
+    // state
     const [addRevealThumb, setAddRevealThumb] = useState(false); // state for conditional animation
+    // ref
     const thumbRef = useRef(); // refers thumbnail card
 
     // component mount

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 // API
 import API from './API'
 
@@ -19,7 +18,7 @@ export default class MovierProvider extends Component {
         this.fetchData();
     }
 
-    // fetch data
+    // function to fetch popular movies and tvshows for home page
     fetchData = async () => {
         try {
             const popularMovies = await API.fetchTrending("movie") // popular movies

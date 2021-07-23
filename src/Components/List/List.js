@@ -18,18 +18,22 @@ export default function List({ children, listHeading, listId, fromPage, loadMore
         handleClick
     } = useListHook(fromPage, loadMoreDone); // custom hook
 
+    // Animation Applied based on custom hook value { addReveal, addRevealText}
+    // Animation Fade
     const reveal = {
         animation: 'reveal .8s ease-in-out forwards'
     }
-
+    // Animation revealing text from left to right
     const revealText = {
         animation: 'textRevealFromLeft 1.5s linear forwards'
     }
 
+    // Style specific for Searched Media page
     const stylList = {
         flexWrap: 'wrap',
         gap: '4rem 3rem',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        overflowX: 'hidden'
     }
 
     return <div ref={listRef} className="list">
@@ -39,8 +43,10 @@ export default function List({ children, listHeading, listId, fromPage, loadMore
             id={listId}
             ref={listContainerRef}
             style={addReveal ?
-                fromPage === 'searchPage' ? { ...stylList, ...reveal }
-                    : reveal
+                fromPage === 'searchPage' ? {
+                    ...stylList, ...reveal
+                }
+                    : { ...reveal }
                 : null}
         >
             {children}

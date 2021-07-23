@@ -10,6 +10,7 @@ export default function ThumbnailCard({ listId, thumbnail, title, fromPage, load
 
     const { addRevealThumb, thumbRef } = useAnimateOnScroll(listId, fromPage, loadMoreDone); // custom hook
 
+    // Animation based on custom hook { addRevealThumb}
     const revealElement = {
         animation: 'reveal 1s ease-in-out forwards'
     }

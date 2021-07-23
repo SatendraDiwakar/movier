@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 // Router
 import { BrowserRouter as Router } from 'react-router-dom';
-
 // Component
 import App from './App';
-
-// Context
+// Context Provider
 import MovierProvider from './Context'
 
 ReactDOM.render(
