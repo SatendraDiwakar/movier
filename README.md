@@ -1,4 +1,61 @@
-# Getting Started with Create React App
+# What is Movie Info-Ver?
+
+As the name suggests, Its an app that provides information about Movies as well as Tv Shows.
+This app uses TMDB API to get data and Built in React js.
+
+## Demo
+
+[Movie Info-Ver]
+
+
+# How to navigate this project
+
+I structured directories of this app in a much simplest way that i could have
+
+- [Components](https://github.com/SatendraDiwakar/movier/tree/master/src/Components)
+- [UI](https://github.com/SatendraDiwakar/movier/tree/master/src/Components/UI)
+- [Custom Hooks](https://github.com/SatendraDiwakar/movier/tree/master/src/hooks)
+- [Pages](https://github.com/SatendraDiwakar/movier/tree/master/src/Pages)
+
+# My work process for this app
+
+- Analyzing and slicing design mockups for creating appropriate UI components and architecting the style codebase.
+
+- Choosing color palletes and making wireframes.
+
+- Note down required functionalities and pages for the app.
+
+- Structuring files
+
+- Start working on chunks of the app.
+
+- Connecting all pieces and routes together.
+
+- Checking whole app functionalities working fine or not.
+
+- Checking app in different devices to get perfect responsiveness.
+
+- Deploying the app.
+
+## Dependencies
+
+- react-router-dom
+- react-icons
+
+## Concepts Used
+
+- Class based components
+- Functional Components
+- API
+- Hooks
+- Custom Hooks
+- Routing
+- Context-API
+- Responsive Designs
+- async-await
+
+
+## React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
