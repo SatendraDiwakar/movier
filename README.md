@@ -19,17 +19,17 @@ I structured directories of this app in a much simplest way that i could have
 
 # My work process for this app
 
-- Analyzing and slicing design mockups for creating appropriate UI components and architecting the style codebase.
+- Analyzing  the project.
 
-- Choosing color palletes and making wireframes.
+- Creating wireframes and note down required functionalities and pages for the app.
 
-- Note down required functionalities and pages for the app.
+- Choosing color palletes and slicing design mockups for creating appropriate UI components.
 
-- Structuring files
+- Structuring working directory.
 
 - Start working on chunks of the app.
 
-- Connecting all pieces and routes together.
+- Integrate all pieces.
 
 - Checking whole app functionalities working fine or not.
 
