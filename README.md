@@ -5,7 +5,7 @@ This app uses TMDB API to get data and Built in React js.
 
 ## Demo
 
-[Movie Info-Ver]
+[Movie Info-Ver](https://movier.netlify.app/)
 
 
 # How to navigate this project

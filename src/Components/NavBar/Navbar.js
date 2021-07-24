@@ -38,7 +38,8 @@ export default function Navbar() {
             if (refLastScrollTop.current === 0) {
                 setHideNav(false);
             }
-            refLastScrollTop.current = st <= 0 ? 0 : st;            
+            refLastScrollTop.current = st <= 0 ? 0 : st;
+            // show nav bar when user scroll back to top            
             if (window.scrollY <= 50) {
                 setHideNav(false);
             }
