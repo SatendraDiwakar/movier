@@ -8,7 +8,7 @@ import { FaAngleDown } from 'react-icons/fa'
 // components
 import Logo from '../Logo'
 // image
-import logo from '../../Images/logo.png'
+import logo from '../../Images/logo.PNG'
 
 export default function Navbar() {
 
